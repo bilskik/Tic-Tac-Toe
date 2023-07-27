@@ -1,7 +1,6 @@
 import "./navbar.css"
 import Button from '../../../components/buttons/Button'
 import "./navbar.css";
-import { buttonColors } from "../../../contraints/colors";
 import { Link, useNavigate } from "react-router-dom"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
@@ -17,7 +16,7 @@ const Navbar = ({nickName} : { nickName : string}) => {
         </div>
         <div className="header__buttons">
             <HeaderNav nickName={nickName}/>
-            <Button style={`login`} colors={buttonColors}/>
+            <Button style={`login`} id={`login`}/>
         </div>
         {
           isOpen ? <IoClose className="icons icons__close" onClick={() => {setIsOpen(false)}} /> 

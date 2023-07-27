@@ -1,0 +1,16 @@
+.menucontainer {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--color-maincontainer);
+    width: 75vw;
+    border-radius: 40px;
+}
+.menucontainer__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0px;
+}

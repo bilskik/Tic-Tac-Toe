@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { buttonColors as colors} from "../../contraints/colors"
 import "./button.css"
 type colors = {
   backgroundColor: string
@@ -11,30 +12,37 @@ type colors = {
 
 type buttonProps = {
     style?: string,
-    colors: colors,
+    id? : string
 }
 const Button = (props: buttonProps) => {
   const [hovered,setHovered] = useState(false);
   const style = {
-    backgroundColor: hovered ? props.colors.backgroundColorHover : props.colors.backgroundColor,
-    color:  hovered ? props.colors.textColorHover  : props.colors.textColor,
-    borderColor: hovered ? props.colors.borderColorHover : props.colors.borderColor
+    backgroundColor: hovered ? colors.backgroundColorHover : colors.backgroundColor,
+    color:  hovered ? colors.textColorHover  : colors.textColor,
+    borderColor: hovered ? colors.borderColorHover : colors.borderColor
   }
-  useEffect(() => {
-    if(props.style === "login") {
-      // style.hoverColor = "green";
-    }
-  },[props])
+  const [classNameStyle,setClassNameStyle] = useState("");
   const handleMouseEnter = () => {
     setHovered(true);
   }
   const handleMouseLeave = () => {
     setHovered(false);
   }
+  useEffect(() => {
+    if(props.id === "login") {
+      setClassNameStyle("home__navbar")
+    } else if(props.id === "menu") {
+      setClassNameStyle("home__menu")
+    } else if(props.id === "rank") {
+      setClassNameStyle("home__rank")
+    } else if(props.id === "leaderboard") {
+      setClassNameStyle("home__leaderboard")
+    }
+  },[props])
   return (
     <button 
       style={style} 
-      className="home__button"
+      className={classNameStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

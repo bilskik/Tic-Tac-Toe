@@ -22,9 +22,20 @@
     font-size: var(--fontNav-size);
     color: var(--color-text);
     cursor: pointer;
-    margin: 15px;
+    padding: 5px;
+    margin: 10px;
+    transition: 0.25s;
+}
+.header__text:hover {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--color-text-hover);
+}
+.header__text-title:hover {
+    background-color: var(--color-navbar);
 }
 .header__text-title {
+    background-color: var(--color-navbar);
     font-size: var(--fontHeader-size);
 }
 .icons { 
