@@ -2,16 +2,15 @@ import React, { useState } from 'react'
 import Button from '../../../../components/buttons/Button'
 import { FaCrown } from "react-icons/fa";
 import { GiTrophyCup } from "react-icons/gi";
-import Board from './leaderboard/Leaderboard';
-import Rankboard from './rankBoard/Rankboard';
+import Ranksboard from './board/Ranksboard';
 const LeaderBoards = () => {
-    const [displayBoard,setDisplayBoard] = useState("");
+    const [boardType,setBoardType] = useState("");
 
     const handleLeaderBoardClick = () => {
-        setDisplayBoard("leaderboard");
+        setBoardType("leaderboard");
     }
     const handleRankBoardClick = () => {
-        setDisplayBoard("rankboard");
+        setBoardType("rankboard");
     }
     return (
     <>
@@ -22,9 +21,7 @@ const LeaderBoards = () => {
             <FaCrown className='icons__crown'/>
         </div>
         <div className="menucontainer_listranks">
-            {
-                displayBoard === "leaderboard" ? <Board/> : displayBoard === "rankboard" ? <Rankboard/> : <></>
-            }
+            <Ranksboard type={boardType}/>
         </div>
     </>
     )

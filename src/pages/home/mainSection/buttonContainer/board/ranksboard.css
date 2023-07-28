@@ -22,13 +22,19 @@
     border-radius: 10px;
 }  
 .board__description, .board__playerdata {
-    display: grid;
-    grid-template-columns: 70px 300px 200px auto;
     color: var(--color-text);
     font-family: var(--font-family);
     font-size: var(--fontBoard-size);
     width: 90%;
     margin: auto;
+}
+.board__description.board__description-leaderboard ,.board__playerdata.board__playerdata-leaderboard {
+    display: grid;
+    grid-template-columns: 70px 300px 200px auto;
+}
+.board__description.board__description-rankboard , .board__playerdata.board__playerdata-rankboard {
+    display: grid;
+    grid-template-columns: 70px 400px auto;
 }
 .board__description {
     margin-bottom: 10px;
