@@ -4,7 +4,7 @@ import { FaCrown } from "react-icons/fa";
 import { GiTrophyCup } from "react-icons/gi";
 import Ranksboard from './board/Ranksboard';
 const LeaderBoards = () => {
-    const [boardType,setBoardType] = useState("");
+    const [boardType,setBoardType] = useState("leaderboard");
 
     const handleLeaderBoardClick = () => {
         setBoardType("leaderboard");

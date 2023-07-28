@@ -3,6 +3,7 @@
     margin: auto;
     margin-top:10px;
     margin-bottom: 10px;
+    position: relative;
 }
 .board__data {
     max-height: 250px;
@@ -27,6 +28,8 @@
     font-size: var(--fontBoard-size);
     width: 90%;
     margin: auto;
+    position: relative;
+    z-index: 1;
 }
 .board__description.board__description-leaderboard ,.board__playerdata.board__playerdata-leaderboard {
     display: grid;
@@ -41,6 +44,10 @@
 }
 .board__playerdata {
     margin-bottom: 15px;
+}
+.board__playerdata:hover {
+    background-color: var( --color-backlight);
+    border-radius: 10px;
 }
 .board__stats {
     display: flex;

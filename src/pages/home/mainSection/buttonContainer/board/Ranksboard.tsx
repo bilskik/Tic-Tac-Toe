@@ -1,4 +1,5 @@
 import { playersData, playersRankData } from "../../../../../constraints/boardData";
+import PopupInfo from "../../popupinfo/PopupInfo";
 import "./ranksboard.css"
 import { useEffect, useState } from "react";
 interface PlayerRanks {
@@ -33,6 +34,7 @@ const Ranksboard = (props : { type : string}) => {
                 }
                 <p className="board__descrpition-score">Score</p>
             </div>
+            <PopupInfo/>
             <div className="board__data">
             {
                 data?.map((elem,index) => {
