@@ -18,7 +18,7 @@ const Rankboard = () => {
                                 <p className="rank__playerdata-rank">{index + 1}.</p>
                                 <p className="rank__playerdata-nick">{elem.nick}</p>
                                 <p className="rank__playerdata-score">{elem.score}</p>
-                            </div>
+                             </div>  
                         )
                     })
                 }
