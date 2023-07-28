@@ -1,0 +1,41 @@
+.rank {
+    width: 90%;
+    margin: auto;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.rank__data {
+    max-height: 250px;
+    overflow-y:hidden;
+}
+.rank__data:hover {
+    overflow-y: auto;
+}
+.rank__data::-webkit-scrollbar {
+    width: 10px;
+}
+.rank__data::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+.rank__data::-webkit-scrollbar-thumb {
+    background-color: var(--color-scroll);
+    border-radius: 10px;
+} 
+.rank__description, .rank__playerdata {
+    display: grid;
+    grid-template-columns: 80px 100px 350px;
+    color: var(--color-text);
+    font-family: var(--font-family);
+    font-size: var(--fontBoard-size);
+    width: 90%;
+    margin: auto;
+}
+.rank__description {
+    margin-bottom: 10px;
+}
+.rank__playerdata {
+    margin-bottom: 15px;
+}
+.rank__playerdata-score, .rank__description-score {
+    justify-self: end;
+}

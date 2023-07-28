@@ -16,6 +16,11 @@
     --color-text-hover: rgb(16,30,39); 
     --color-border: #000;
     --color-maincontainer: rgb(46,62,71);
+    --color-textwin: green;
+    --color-textlose: red;
+    --color-textdraw: gray;
+    --color-scroll: #A9BECA;
+    --fontBoard-size: 1.3rem;
     --fontNav-size: 1.3rem;
     --fontNav-mobile-size: 1.3rem;
     --fontHeader-size: 2rem;

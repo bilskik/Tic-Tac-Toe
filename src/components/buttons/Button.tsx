@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { buttonColors as colors} from "../../contraints/colors"
+import { buttonColors as colors} from "../../constraints/colors"
 import "./button.css"
 type colors = {
   backgroundColor: string
@@ -12,7 +12,8 @@ type colors = {
 
 type buttonProps = {
     style?: string,
-    id? : string
+    id? : string,
+    onClick? : () => void,
 }
 const Button = (props: buttonProps) => {
   const [hovered,setHovered] = useState(false);
@@ -45,6 +46,7 @@ const Button = (props: buttonProps) => {
       className={classNameStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={props.onClick}
     >
       {props.style}
     </button>

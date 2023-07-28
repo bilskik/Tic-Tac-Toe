@@ -1,0 +1,53 @@
+.board {
+    width: 90%;
+    margin: auto;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.board__data {
+    max-height: 250px;
+    overflow-y:hidden;
+}
+.board__data:hover {
+    overflow-y: auto;
+}
+.board__data::-webkit-scrollbar {
+    width: 10px;
+}
+.board__data::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+.board__data::-webkit-scrollbar-thumb {
+    background-color: var(--color-scroll);
+    border-radius: 10px;
+}  
+.board__description, .board__playerdata {
+    display: grid;
+    grid-template-columns: 70px 300px 200px auto;
+    color: var(--color-text);
+    font-family: var(--font-family);
+    font-size: var(--fontBoard-size);
+    width: 90%;
+    margin: auto;
+}
+.board__description {
+    margin-bottom: 10px;
+}
+.board__playerdata {
+    margin-bottom: 15px;
+}
+.board__stats {
+    display: flex;
+}
+.board__playerdata-slash {
+    color: var(--color-text);
+}
+.board__playerdata-wins {
+    color: var(--color-textwin)
+}
+.board__playerdata-loses {
+    color: var(--color-textlose);
+}
+.board__playerdata-draws {
+    color: var(--color-textdraw);
+}

@@ -13,7 +13,7 @@
     padding: 1.5rem 0rem;
     margin:20px;
     border-radius: 30px;
-    width: 50%;
+    width: 45%;
     cursor: pointer;
     font-family: var(--font-family);
     font-size: var(--fontNav-size);
@@ -21,15 +21,26 @@
     border: 1px solid var(--color-border);
     transition: 0.25s;
 }
-.home__rank {
+.home__rank, .home__leaderboard {
+    padding: 1.5rem 0rem;
+    /* margin:20px; */
+    /* border-radius: 30px; */
+    width: 45%;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: var(--fontNav-size);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    transition: 0.25s;
+}
+/* .home__leaderboard {
     padding: 1.5rem 0rem;
     margin:20px;
-    border-radius: 30px;
-    width: 50%;
+    width: 45%;
     cursor: pointer;
     font-family: var(--font-family);
     font-size: var(--fontNav-size);
     color: var(--color-text);
     border: 1px solid var(--color-border);
     transition: 0.25s;
-}
+} */

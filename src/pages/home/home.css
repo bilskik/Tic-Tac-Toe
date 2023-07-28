@@ -1,4 +1,6 @@
 .page__home {
     background-color: rgb(16,30,39);
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
