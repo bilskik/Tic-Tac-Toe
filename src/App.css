@@ -22,10 +22,13 @@
     --color-scroll: #A9BECA;
     --color-backlight: rgb(120, 137, 147);
     --color-popup: rgb(120, 137, 147,0.8);
-    --fontBoard-size: 1.3rem;
-    --fontNav-size: 1.3rem;
+    --fontBoard-size: 1rem;
+    --fontBoard-tablet-size: 1rem;
+    --fontBoard-mobile-size: 0.8rem;
+    --fontNav-size: 1.1rem;
     --fontNav-mobile-size: 1.3rem;
     --fontHeader-size: 2rem;
-    --fontHeader-mobile-size: 1.7rem;
+    --fontHeader-tablet-size: 1.7rem;
+    --fontHeader-mobile-size: 1.5rem;
     --font-popup-size: 1rem;
 }

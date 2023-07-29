@@ -1,6 +1,7 @@
 .page__home {
-    background-color: rgb(16,30,39);
+    background-color: var(--color-mainmenu);
     height: 100vh;
-    display: flex;
-    flex-direction: column;
+    /* height: 100%; */
+    /* display: flex; */
+    /* flex-direction: column; */
 }
