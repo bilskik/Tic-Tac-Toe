@@ -1,3 +1,4 @@
+import { BlobOptions } from "buffer";
 import { playersData, playersRankData } from "../../../../../constraints/boardData";
 import PopupInfo from "../../popupinfo/PopupInfo";
 import "./ranksboard.css"
@@ -17,6 +18,8 @@ interface LeaderboardRanks {
   }
 const Ranksboard = (props : { type : string}) => {
     const [data,setData] = useState<PlayerRanks[] | LeaderboardRanks[]>();
+    const [popupShow, setPopupShow] = useState<boolean>(false);
+
     useEffect(() => {
         if(props.type === "leaderboard") {
             setData(playersData);
@@ -24,17 +27,33 @@ const Ranksboard = (props : { type : string}) => {
             setData(playersRankData);
         }
     },[props])
+    const handleWDLEnter = () => {
+        setPopupShow(true)
+    }
+    const handleWDLLeave = () => {
+        setPopupShow(false);
+    }
     return (
         <div className="board">
             <div className={`board__description board__description-${props.type}`}>
                 <p className="board__descrpition-rank">Rank</p>
                 <p className="board__descrpition-nick">Nick</p>
                 {
-                    props.type === "leaderboard" ? <p className="board__descrpition-stats">W/D/L</p> : <></>
+                    props.type === "leaderboard" ? 
+                    <p 
+                        className="board__descrpition-stats" 
+                        onMouseEnter={handleWDLEnter} 
+                        onMouseLeave={handleWDLLeave}>
+                        W/D/L
+                    </p> 
+                    : <></>
                 }
                 <p className="board__descrpition-score">Score</p>
             </div>
-            <PopupInfo/>
+            {
+                popupShow ? <PopupInfo/> : <></>
+            }
+
             <div className="board__data">
             {
                 data?.map((elem,index) => {

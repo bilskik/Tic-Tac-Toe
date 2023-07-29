@@ -3,7 +3,7 @@ import "./popupinfo.css"
 const PopupInfo = () => {
   return (
     <div className='popup'>
-        Wins / Draws / Loses
+      <p>Wins / Draws / Loses</p>
     </div>
   )
 }

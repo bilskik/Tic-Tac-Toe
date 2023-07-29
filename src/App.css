@@ -20,10 +20,12 @@
     --color-textlose: red;
     --color-textdraw: gray;
     --color-scroll: #A9BECA;
-    --color-backlight: #788993;
+    --color-backlight: rgb(120, 137, 147);
+    --color-popup: rgb(120, 137, 147,0.8);
     --fontBoard-size: 1.3rem;
     --fontNav-size: 1.3rem;
     --fontNav-mobile-size: 1.3rem;
     --fontHeader-size: 2rem;
     --fontHeader-mobile-size: 1.7rem;
+    --font-popup-size: 1rem;
 }
