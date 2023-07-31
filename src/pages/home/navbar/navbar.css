@@ -72,11 +72,11 @@
     .topnav {
         display: block;
         position: absolute;
-        top:12vh;
+        top:80px;
         width: 50%;
         right: 0px;
         text-align: center;
-        background-color: orange;
+        background-color: rgba(16,36,47,0.8);
     }
     .topnav-active {
         

@@ -74,7 +74,18 @@
         max-height:10.3vh;
     }
 }
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 810px) and (max-height: 950px) {
+    .board__data {
+        max-height: 33.5vh;
+    }
+    .board__description, .board__playerdata {
+        font-size: var(--fontBoard-tablet-size);
+    }
+}
+@media screen and (max-width: 810px) and (max-height: 800px) {
+    .board__data {
+        max-height: 25vh;
+    }
     .board__description, .board__playerdata {
         font-size: var(--fontBoard-tablet-size);
     }
