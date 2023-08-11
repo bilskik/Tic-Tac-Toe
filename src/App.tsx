@@ -1,25 +1,31 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { Home, Settings, Statistics }  from "./pages"
+import { Home, Settings, Statistics, Login }  from "./pages"
 import "./app.css"
 const App = () => {
   const routes = createBrowserRouter([
     {
-        path: "",
-        element : (
-            <Home/>
-        )
+      path: "",
+      element : (
+          <Home/>
+      )
     },
     {
-        path: "/settings",
-        element: (
-            <Settings/>
-        )
+      path: "/settings",
+      element: (
+          <Settings/>
+      )
     },
     {
-        path: "/statistics",
-        element: (
-            <Statistics/>
-        )
+      path: "/statistics",
+      element: (
+          <Statistics/>
+      )
+    }, 
+    {
+      path: "/login",
+      element : (
+          <Login/>
+      )
     }
   ]);
 

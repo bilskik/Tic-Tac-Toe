@@ -16,7 +16,9 @@ const Navbar = ({nickName} : { nickName : string}) => {
         </div>
         <div className="header__buttons">
             <HeaderNav nickName={nickName}/>
-            <Button style={`login`} id={`login`}/>
+            <Link to="/login">
+              <Button style={`login`} id={`login`}/>
+            </Link>
         </div>
         {
           isOpen ? <IoClose className="icons icons__close" onClick={() => {setIsOpen(false)}} /> 
