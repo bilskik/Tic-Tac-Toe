@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./login.css"
 import LoginButton from "../../components/buttons/loginButtons/LoginButton";
-import { AiFillGoogleCircle,AiOutlineMail } from "react-icons/ai"
+import { AiFillGoogleCircle,AiOutlineUser } from "react-icons/ai"
 import { RiLockPasswordLine } from "react-icons/ri"
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     return (
@@ -15,43 +15,50 @@ const Login = () => {
                     Login
                 </header>
                 <form action="" className="loginforms">
-                    <label htmlFor="email">
-                        <p className='loginforms__email'>
-                            Email
+                    <label htmlFor="email" className="loginforms__label">
+                        <p className='loginforms__username'>
+                            Username
                         </p>
-                        <AiOutlineMail/>
-                        <input 
-                            type="email"
-                            placeholder="youremail@gmail.com"
-                            id="email"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
+                        <div className="loginforms__inputcontainer">
+                            <AiOutlineUser className="loginforms__icon"/>
+                            <input  
+                                type="text"
+                                placeholder="Username"
+                                id="username"
+                                name="username"
+                                value={username}
+                                className="loginforms__input"
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
                     </label>
-                    <label htmlFor="password">
+                    <label htmlFor="password" className="loginforms__label">
                         <p className='loginforms__password'>
                             Password
                         </p>
-                        <RiLockPasswordLine/>
-                        <input
-                            type="password"
-                            placeholder="******"
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                        <div className="loginforms__inputcontainer">
+                            <RiLockPasswordLine className="loginforms__icon"/>
+                            <input
+                                type="password"
+                                placeholder="******"
+                                id="password"
+                                name="password"
+                                value={password}
+                                className="loginforms__input"
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
                     </label>
-                    <label htmlFor="checkbox">
+                    <label htmlFor="checkbox" className="loginforms__label">
+                        <span className="loginforms__checkbox">
+                            Remember me?
+                        </span>
                         <input
                             type="checkbox"
                             id="checkbox"
                             name="checkbox"
                         />
-                        <p className="loginforms__checkbox">
-                            Remember me?
-                        </p>
+
                     </label>
                     <LoginButton text={`login`}/>
                 </form>

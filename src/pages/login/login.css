@@ -1,0 +1,61 @@
+.loginpage {
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--font-family);
+    font-size: var(--fontSize-login);
+    background-color:  var(--color-mainmenu);
+}
+.logincontainer {
+    width: 320px;
+    padding: 1.5rem 4.3rem;
+    position: relative;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+}
+.loginforms {
+    display: flex;
+    flex-direction: column;
+}
+.loginforms__inputcontainer {
+    width: 100%;
+    padding: 0.4rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    box-shadow: 0 0px 3px black;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.loginforms__input {
+    padding: 0.2rem 0.5rem;
+    width: 85%;
+    border: none;
+}
+.loginforms__input:focus {
+    border: none;
+    outline: none;
+}
+.loginforms__label {
+    margin: 0.5rem 0px;
+}
+.loginforms__icon {
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    transform: translateY(-50%);
+}
+.logincontainer__title {
+    padding: 0.8rem 0;
+    font-size: var(--fontSizeHeader-login);
+}
+.loginforms__username{
+    padding: 0.6rem 0;
+}
+.loginforms__password {
+    padding: 0.6rem 0;
+}
+.loginforms__checkbox {
+    padding: 0.2rem 0;
+}
