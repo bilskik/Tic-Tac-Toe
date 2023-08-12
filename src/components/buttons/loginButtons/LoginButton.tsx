@@ -7,6 +7,7 @@ const LoginButton = ({text} : LoginButtonProps) => {
   return (
     <button
         type="submit"
+        className={`loginbutton__${text}`}
     >
         {text}
     </button>

@@ -23,8 +23,13 @@
     --color-backlight: rgb(120, 137, 147);
     --color-popup: rgb(120, 137, 147,0.8);
     --color-sidebar: rgba(16,36,47,0.8);
-    --fontSize-login: 1.5rem;
-    --fontSizeHeader-login: 1.9rem;
+    --color-login: #FDA955;
+    --color-login-hover: #D36D09;
+    --color-login-text: #391C00;
+    --fontSize-login: 1.2rem;
+    --fontSizeHeader-login: 2rem;
+    --fontSize-login-mobile: 0.8rem;
+    --fontSizeHeader-login-mobile: 1.5rem;
     --fontBoard-size: 1rem;
     --fontBoard-tablet-size: 1rem;
     --fontBoard-mobile-size: 0.8rem;

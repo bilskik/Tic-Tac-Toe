@@ -1,13 +1,14 @@
 import { useState } from "react";
 import "./login.css"
 import LoginButton from "../../components/buttons/loginButtons/LoginButton";
-import { AiFillGoogleCircle,AiOutlineUser } from "react-icons/ai"
+import { AiFillGoogleCircle,AiOutlineUser, AiOutlineCheck } from "react-icons/ai"
 import { RiLockPasswordLine } from "react-icons/ri"
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
     return (
         <div className='loginpage'>
             <div className="logincontainer">
@@ -49,28 +50,42 @@ const Login = () => {
                             />
                         </div>
                     </label>
-                    <label htmlFor="checkbox" className="loginforms__label">
-                        <span className="loginforms__checkbox">
-                            Remember me?
-                        </span>
+                    <label htmlFor="checkbox" className="loginforms__label loginforms__labelcheckbox">
                         <input
                             type="checkbox"
                             id="checkbox"
                             name="checkbox"
+                            className="loginforms__checkbox"
+                            onChange={(e) => setIsCheckboxClicked(!isCheckboxClicked)}
                         />
-
+                        { isCheckboxClicked ? <AiOutlineCheck className="loginforms__labelcheckbox-check"/> : <></>}
+                        <span className="loginforms__text">
+                            Remember me?
+                        </span>
                     </label>
                     <LoginButton text={`login`}/>
                 </form>
                 <p className="logincontainer__text">
-                    Forgot password?
+                    <Link to="/getBack" className="logincontainer__text logincontainer__text-underline">
+                        Forgot password?
+                    </Link>
                 </p>
-                <AiFillGoogleCircle/> 
-                <p className="logincontainer__google">
-                    Sign in with google
-                </p>
+                <div className="logincontainer__google">
+                    <p>
+                        Sign in with
+                    </p>
+                    {/* <Link>  */}
+                        <AiFillGoogleCircle className="logincontainer__googleicon"/> 
+                    {/* </Link> */}
+                </div>
                 <p className="logincontainer__newaccount">
-                    New to Tic-Tac-Toe? <span>Create account</span>
+                    New to Tic-Tac-Toe?&nbsp;
+                    <Link to="/signup" className="logincontainer__newaccount">
+                        <span className="logincontainer__newaccount-underline">
+                            Create account
+                        </span>
+                    </Link>
+
                 </p>
             </div>
         </div>
