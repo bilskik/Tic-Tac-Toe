@@ -18,6 +18,8 @@
     display: flex;
     flex-direction: column;
 }
+
+
 .loginforms__inputcontainer {
     width: 100%;
     padding: 0.4rem 0rem;
@@ -26,6 +28,12 @@
     display: flex;
     justify-content: center;
     position: relative;
+}
+.loginforms__inputcontainer-userError {
+    border: 1px solid red;
+}
+.loginforms__inputcontainer-passwordError {
+    border: 1px solid red;
 }
 .loginforms__input {
     padding: 0.2rem 0.5rem;

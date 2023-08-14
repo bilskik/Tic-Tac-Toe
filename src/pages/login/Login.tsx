@@ -10,7 +10,8 @@ const Login = () => {
     const alert = 
         {
             "alert": false,
-            "alertMessage": ""
+            "alertMessage": "",
+            "alertType": "error"
          }
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
     const [username, setUsername] = useState('');
@@ -24,13 +25,15 @@ const Login = () => {
         if(user.length < 5) {
             setUsernameAlert({
                 "alert": true,
-                "alertMessage": "Username should be at least 5 characters length!"
+                "alertMessage": "Username should be at least 5 characters length!",
+                "alertType": "userError"
             })
         }
         else {
             setUsernameAlert({
                 "alert": false,
-                "alertMessage": ""
+                "alertMessage": "",
+                "alertType": ""
             })
         }
     }
@@ -39,19 +42,22 @@ const Login = () => {
         if(regex.test(pass)) {
             setPasswordAlert({
                 "alert": false,
-                "alertMessage": ""
+                "alertMessage": "",
+                "alertType": ""
             })
         }
         else if(pass.length < 6) {
             setPasswordAlert({
                 "alert": true,
-                "alertMessage":"Password should be at least 6 characters length!"
+                "alertMessage":"Password should be at least 6 characters length!",
+                "alertType": "passwordError"
             });
         }
         else {
             setPasswordAlert({
                 "alert": true,
-                "alertMessage":"Password should contain at least one lower,upper character and number!"
+                "alertMessage":"Password should contain at least one lower,upper character and number!",
+                "alertType": "passwordError"
             });
         }
     }
@@ -66,7 +72,7 @@ const Login = () => {
                         <p className='loginforms__username'>
                             Username
                         </p>
-                        <div className="loginforms__inputcontainer">
+                        <div className={`loginforms__inputcontainer loginforms__inputcontainer-${usernameAlert.alertType}`}>
                             <AiOutlineUser className="loginforms__icon"/>
                             <input  
                                 type="text"
@@ -78,13 +84,14 @@ const Login = () => {
                                 onChange={(e) => validateUsername(e.target.value)}
                             />
                         </div>
-                        { usernameAlert ? <LoginAlert alertmode="error" alertText={usernameAlert.alertMessage}/> : <></>}
+                        { usernameAlert ? <LoginAlert alertmode={usernameAlert.alertType}
+                         alertText={usernameAlert.alertMessage}/> : <></>}
                     </label>
                     <label htmlFor="password" className="loginforms__label">
                         <p className='loginforms__password'>
                             Password
                         </p>
-                        <div className="loginforms__inputcontainer">
+                        <div className={`loginforms__inputcontainer loginforms__inputcontainer-${usernameAlert.alertType}`}>
                             <RiLockPasswordLine className="loginforms__icon"/>
                             <input
                                 type="password"
@@ -96,7 +103,8 @@ const Login = () => {
                                 onChange={(e) => validatePassword(e.target.value)}
                             />
                         </div>
-                        { passwordAlert ? <LoginAlert alertmode="error" alertText={passwordAlert.alertMessage}/> : <></>}
+                        { passwordAlert ? <LoginAlert alertmode={passwordAlert.alertType}
+                         alertText={passwordAlert.alertMessage}/> : <></>}
                     </label>
                     <label htmlFor="checkbox" className="loginforms__label loginforms__labelcheckbox">
                         <input
