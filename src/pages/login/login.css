@@ -22,7 +22,6 @@
     width: 100%;
     padding: 0.4rem 0rem;
     border: 1px solid black;
-    /* border-radius: 0.5rem; */
     box-shadow: 0 0px 3px black;
     display: flex;
     justify-content: center;
@@ -78,8 +77,6 @@
 }
 .loginforms__password {
     padding: 0.6rem 0;
-    width: 30px;
-    height: 30px;
 }
 .loginforms__text {
     margin-left: 10px;

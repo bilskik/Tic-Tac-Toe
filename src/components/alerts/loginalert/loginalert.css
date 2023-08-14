@@ -1,0 +1,8 @@
+.error {
+    margin-top: 0.35rem;
+    font-size: var(--fontSize-alert);
+    position: relative;
+}
+.error-color {
+    color: red;
+}

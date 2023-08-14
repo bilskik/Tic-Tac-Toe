@@ -4,11 +4,57 @@ import LoginButton from "../../components/buttons/loginButtons/LoginButton";
 import { AiFillGoogleCircle,AiOutlineUser, AiOutlineCheck } from "react-icons/ai"
 import { RiLockPasswordLine } from "react-icons/ri"
 import { Link } from "react-router-dom";
+import LoginAlert from "../../components/alerts/loginalert/LoginAlert";
 
 const Login = () => {
+    const alert = 
+        {
+            "alert": false,
+            "alertMessage": ""
+         }
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
+    const [passwordAlert,setPasswordAlert] = useState(alert);
+    const [usernameAlert,setUsernameAlert] = useState(alert);
+    const validateUsername = (user : string) => {
+        // if(checkInBase)
+        setUsername(user);
+        if(user.length < 5) {
+            setUsernameAlert({
+                "alert": true,
+                "alertMessage": "Username should be at least 5 characters length!"
+            })
+        }
+        else {
+            setUsernameAlert({
+                "alert": false,
+                "alertMessage": ""
+            })
+        }
+    }
+    const validatePassword = (pass : string) => {
+        setPassword(pass)
+        if(regex.test(pass)) {
+            setPasswordAlert({
+                "alert": false,
+                "alertMessage": ""
+            })
+        }
+        else if(pass.length < 6) {
+            setPasswordAlert({
+                "alert": true,
+                "alertMessage":"Password should be at least 6 characters length!"
+            });
+        }
+        else {
+            setPasswordAlert({
+                "alert": true,
+                "alertMessage":"Password should contain at least one lower,upper character and number!"
+            });
+        }
+    }
     return (
         <div className='loginpage'>
             <div className="logincontainer">
@@ -29,9 +75,10 @@ const Login = () => {
                                 name="username"
                                 value={username}
                                 className="loginforms__input"
-                                onChange={(e) => setUsername(e.target.value)}
+                                onChange={(e) => validateUsername(e.target.value)}
                             />
                         </div>
+                        { usernameAlert ? <LoginAlert alertmode="error" alertText={usernameAlert.alertMessage}/> : <></>}
                     </label>
                     <label htmlFor="password" className="loginforms__label">
                         <p className='loginforms__password'>
@@ -46,9 +93,10 @@ const Login = () => {
                                 name="password"
                                 value={password}
                                 className="loginforms__input"
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) => validatePassword(e.target.value)}
                             />
                         </div>
+                        { passwordAlert ? <LoginAlert alertmode="error" alertText={passwordAlert.alertMessage}/> : <></>}
                     </label>
                     <label htmlFor="checkbox" className="loginforms__label loginforms__labelcheckbox">
                         <input
