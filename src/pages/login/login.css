@@ -14,46 +14,7 @@
     transform: translate(-50%,-50%);
     background-color: white;
 }
-.loginforms {
-    display: flex;
-    flex-direction: column;
-}
 
-
-.loginforms__inputcontainer {
-    width: 100%;
-    padding: 0.4rem 0rem;
-    border: 1px solid black;
-    box-shadow: 0 0px 3px black;
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-.loginforms__inputcontainer-userError {
-    border: 1px solid red;
-}
-.loginforms__inputcontainer-passwordError {
-    border: 1px solid red;
-}
-.loginforms__input {
-    padding: 0.2rem 0.5rem;
-    width: 85%;
-    border: none;
-}
-.loginforms__input:focus {
-    border: none;
-    outline: none;
-}
-.loginforms__label {
-    position: relative;
-    margin: 0.5rem 0px;
-}
-.loginforms__icon {
-    position: absolute;
-    top: 50%;
-    left: 1%;
-    transform: translateY(-50%);
-}
 .logincontainer__title {
     padding: 0.8rem 0;
     font-size: var(--fontSizeHeader-login);
@@ -71,40 +32,23 @@
 .logincontainer__google {
     display: flex;
     justify-content: center;
+    position: relative;
     margin: 0.7rem;
 }
 .logincontainer__googleicon {
+    position: absolute;
     width: 28px;
     height: 28px;
+    top:-5%;
+    left: 62.5%;
     color: var(--color-login);
     cursor: pointer;
-    margin-left:5px;
+    transition: 0.2s;
 }
-.loginforms__username{
-    padding: 0.6rem 0;
+.logincontainer__googleicon:hover {
+    color: var(--color-login-hover);
 }
-.loginforms__password {
-    padding: 0.6rem 0;
-}
-.loginforms__text {
-    margin-left: 10px;
-}
-.loginforms__labelcheckbox-check {
-    position: absolute;
-    left: 0%;
-    top: 16%;
-    height: 1.2rem;
-    width: 1.2rem;
-}
-.loginforms__checkbox {
-    appearance: none;
-    height: 1.2rem;
-    width: 1.2rem;
-    border: 1px solid black;
-}
-.loginforms__checkbox:checked {
-    background-color: var(--color-login);
-}
+
 .logincontainer__newaccount {
     text-align: center;
     color: black;

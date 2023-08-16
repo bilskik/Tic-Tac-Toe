@@ -1,0 +1,65 @@
+.loginforms {
+    display: flex;
+    flex-direction: column;
+}
+.loginforms__inputcontainer {
+    width: 100%;
+    padding: 0.4rem 0rem;
+    border: 1px solid black;
+    box-shadow: 0 0px 3px black;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.loginforms__inputcontainer-userError {
+    border: 1px solid red;
+    box-shadow: 0 0px 3px red;
+}
+.loginforms__inputcontainer-passwordError {
+    border: 1px solid red;
+    box-shadow: 0 0px 3px red;
+}
+.loginforms__input {
+    padding: 0.2rem 0.5rem;
+    width: 85%;
+    border: none;
+}
+.loginforms__input:focus {
+    border: none;
+    outline: none;
+}
+.loginforms__label {
+    position: relative;
+    margin: 0.5rem 0px;
+}
+.loginforms__icon {
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    transform: translateY(-50%);
+}
+.loginforms__username{
+    padding: 0.6rem 0;
+}
+.loginforms__password {
+    padding: 0.6rem 0;
+}
+.loginforms__text {
+    margin-left: 10px;
+}
+.loginforms__labelcheckbox-check {
+    position: absolute;
+    left: 0%;
+    top: 16%;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.loginforms__checkbox {
+    appearance: none;
+    height: 1.2rem;
+    width: 1.2rem;
+    border: 1px solid black;
+}
+.loginforms__checkbox:checked {
+    background-color: var(--color-login);
+}

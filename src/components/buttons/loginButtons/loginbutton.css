@@ -8,7 +8,7 @@
     color: var(--color-login-text);
     background-color: var( --color-login);
     cursor: pointer;
-    transition: 0.25s;
+    transition: 0.2s;
 }
 .loginbutton__login:hover {
     background-color: var(--color-login-hover);

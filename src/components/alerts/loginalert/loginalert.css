@@ -1,8 +1,8 @@
-.error {
+.userError, .passwordError {
     margin-top: 0.35rem;
     font-size: var(--fontSize-alert);
     position: relative;
 }
-.error-color {
+.userError-color, .passwordError-color {
     color: red;
 }
