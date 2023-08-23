@@ -1,7 +1,9 @@
+import { useContext } from "react"
 import useLoginValidation from "../../../hooks/useLoginValidation";
 import "./loginbutton.css"
 import axios from "../../../api/axios";
-import { useState } from "react";
+import useAuth from "../../../hooks/useAuth";
+
 interface LoginButtonProps {
     text: string
     username: string
@@ -14,6 +16,7 @@ const LOGIN_URL = "/login"
 const LoginButton = ({text,username,password, clearInputFields, setServerError} : LoginButtonProps) => {
   const isSubmitted = true;
   const { usernameAlert, passwordAlert } = useLoginValidation(username, password, isSubmitted);
+  const  { auth, setAuth } = useAuth();
   const handleSubmit = async (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if(usernameAlert.alertType === "" && passwordAlert.alertType === "") {
@@ -25,6 +28,9 @@ const LoginButton = ({text,username,password, clearInputFields, setServerError} 
               withCredentials: true
             }
           )
+        const accessToken = response?.data?.accessToken;
+        const roles = response?.data?.roles;
+        setAuth({username, password, accessToken, roles})
       } catch(err : any) {
         if(!err?.response) {
           setServerError("No server response!")
