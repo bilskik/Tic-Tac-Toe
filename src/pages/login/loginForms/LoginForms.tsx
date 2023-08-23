@@ -5,8 +5,13 @@ import LoginAlert from "../../../components/alerts/loginalert/LoginAlert";
 import { AiOutlineUser, AiOutlineCheck } from "react-icons/ai"
 import useLoginValidation from "../../../hooks/useLoginValidation";
 import "./loginforms.css"
-
-const LoginForms = () => {
+interface LoginFormsProps {
+    serverError : (message : string) => void
+    serverAlert : (isShowed : boolean) => void
+} 
+const LoginForms = ({ serverError, serverAlert } : LoginFormsProps) => {
+    const usernameInputRef = useRef(null);
+    const passwordInputRef = useRef(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
@@ -18,7 +23,18 @@ const LoginForms = () => {
     const validatePassword = (pass : string) => {
         setPassword(pass);
     }
-    
+    const clearInputFields = () => {
+        setUsername('');
+        setPassword('');
+    }
+    const setServerError = (message : string) => {
+        serverError(message)
+    }
+    const handleCheckFocus = () => {
+        if(document.activeElement === usernameInputRef.current || document.activeElement === passwordInputRef.current) {
+            serverAlert(false);
+        }
+    }
   return (
     <form action="" className="loginforms">
         <label htmlFor="email" className="loginforms__label">
@@ -34,6 +50,8 @@ const LoginForms = () => {
                     name="username"
                     value={username}
                     className="loginforms__input"
+                    ref={usernameInputRef}
+                    onClick={(e) => handleCheckFocus()}
                     onChange={(e) => validateUsername(e.target.value)}
                 />
             </div>
@@ -53,6 +71,8 @@ const LoginForms = () => {
                     name="password"
                     value={password}
                     className="loginforms__input"
+                    ref={passwordInputRef}
+                    onClick={(e) => handleCheckFocus()}
                     onChange={(e) => validatePassword(e.target.value)}
                 />
             </div>
@@ -72,7 +92,13 @@ const LoginForms = () => {
                 Remember me?
             </span>
         </label>
-        <LoginButton text={`login`} username={username} password={password}/>
+        <LoginButton 
+            text={`login`}
+            username={username}
+            password={password}
+            clearInputFields={clearInputFields} 
+            setServerError={setServerError}
+        />
     </form>
   )
 }

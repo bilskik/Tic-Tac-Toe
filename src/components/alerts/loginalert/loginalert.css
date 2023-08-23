@@ -6,3 +6,9 @@
 .userError-color, .passwordError-color {
     color: red;
 }
+/* change colors */
+.serverError {
+    padding: 0.5rem;
+    color: red;
+    background-color: lightcoral;
+}

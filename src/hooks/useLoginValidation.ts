@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 const useLoginValidation = (username : string, password : string, isSubmitted : boolean) => {
     const alert = 
     {
@@ -11,12 +10,19 @@ const useLoginValidation = (username : string, password : string, isSubmitted : 
     let passwordAlert = alert;
     let usernameAlert = alert;
     const validateUsername = (user : string) => {
-        if(user.length === 0 && !isSubmitted) {
+        if(user.length === 0 && isSubmitted) {
             usernameAlert = {
                 "alert": false,
                 "alertMessage": "",
                 "alertType": "userError"
              }
+        }
+        else if(user.length === 0) {
+            usernameAlert = {
+                "alert": false,
+                "alertMessage": "",
+                "alertType": "error"
+            }
         }
         else if(user.length < 5) {
             usernameAlert = {
@@ -34,7 +40,7 @@ const useLoginValidation = (username : string, password : string, isSubmitted : 
         }
     }
     const validatePassword = (pass : string) => {
-        if(pass.length ===  0 && !isSubmitted) {
+        if(pass.length ===  0 && isSubmitted) {
             passwordAlert = {
                 "alert": false,
                 "alertMessage": "",
@@ -46,6 +52,13 @@ const useLoginValidation = (username : string, password : string, isSubmitted : 
                 "alert": false,
                 "alertMessage": "",
                 "alertType": ""
+            }
+        }
+        else if(pass.length === 0) {
+            passwordAlert = {
+                "alert": false,
+                "alertMessage": "",
+                "alertType": "error"
             }
         }
         else if(pass.length < 6) {
