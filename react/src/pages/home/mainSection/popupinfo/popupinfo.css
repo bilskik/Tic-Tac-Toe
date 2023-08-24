@@ -1,0 +1,14 @@
+.popup {
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    z-index: 3;
+    border-radius: 15px;
+    padding: 0.7rem;
+    background-color: var(--color-popup);
+    font-family: var(--font-family);
+    font-size: var(--font-popup-size);
+}
+.popup > p {
+    color: var(--color-text);
+}

@@ -1,0 +1,67 @@
+.mainmenu {
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+}
+.menucontainer {
+    display: flex;
+    flex-direction: column;
+    margin: 4vh 0px;
+    min-width: 780px;
+    background-color: var(--color-maincontainer);
+    border-radius: 40px;
+    box-shadow: 0 0 10px #b8b8b8;
+}
+.menucontainer__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.menucontainer__ranks {
+    width: 100%;
+    /* margin: auto; */
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.menucontainer_listranks {
+    /* height: 25vh; */
+}
+.icons__trophycup {
+    position: absolute;
+    left: 45%;
+    top:50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    color: gold;
+
+}
+.icons__crown {
+    position: absolute;
+    right: 18%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width: 20px;
+    height: 20px;
+    color: gold;
+}
+@media screen and (max-width: 810px) {
+    .menucontainer {
+        margin: 0;
+        min-width: 0px;
+        width: 100%;
+        height: calc(100vh - 80px);
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+}
+@media screen and (max-width: 450px) {
+    .icons__trophycup, .icons__crown {
+        width: 12.5px;
+        height: 12.5px;
+    }
+}

@@ -1,0 +1,16 @@
+.userError, .passwordError {
+    margin-top: 0.35rem;
+    font-size: var(--fontSize-alert);
+    position: relative;
+}
+.userError-color, .passwordError-color {
+    color: red;
+}
+
+/* change */
+/* change colors */
+.serverError {
+    padding: 0.5rem;
+    color: red;
+    background-color: lightcoral;
+}
