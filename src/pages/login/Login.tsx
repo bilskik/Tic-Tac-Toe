@@ -5,11 +5,33 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { useState } from "react";
 import "./login.css"
 import LoginAlert from "../../components/alerts/loginalert/LoginAlert";
+import jwt_decode from "jwt-decode";
+import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
+const LOGIN_URL = "/login"
 
 const Login = () => {
+  const  { setAuth } = useAuth();
+    const handleGoogleLogin = async (resData : any) => {
+        const accessToken = resData.access_token;
+        const isLoggedByGoogle = true;
+        setAuth({accessToken, isLoggedByGoogle})
+        try { 
+            const response = await axios.post(LOGIN_URL, {
+                headers : {
+                    'Content-Type' : 'application/json',
+                    'Authorization' : `Bearer + ${accessToken}`
+                }
+            })
+        } catch(err : any) {
+
+        }
+    }
     const login = useGoogleLogin({
-        onSuccess: tokenResponse => console.log(tokenResponse),
+        onSuccess: tokenResponse => handleGoogleLogin(tokenResponse),
+        onError: tokenResponse => handleGoogleLogin(tokenResponse)
     });
+
     const [serverErrorAlert, setServerErrorAlert] = useState({
         isAlert : false,
         errorMessage : ""

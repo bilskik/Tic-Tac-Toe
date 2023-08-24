@@ -9,7 +9,8 @@ const AuthContext = createContext<AuthStateType>({
         username : '',
         password : '',
         roles : '',
-        accessToken : ''
+        accessToken : '',
+        isLoggedByGoogle : null
     },
     setAuth: () => undefined
 });
@@ -19,17 +20,19 @@ interface AuthProviderProps {
 }
 
 interface AuthState {
-    username : string
-    password : string
-    roles : string
+    username? : string
+    password? : string
+    roles? : string
     accessToken : string
+    isLoggedByGoogle? : boolean | null
 }
 export const AuthProvider = ({ children } : AuthProviderProps) => {
     const [auth,setAuth] = useState<AuthState>({
         username : '',
         password : '',
         roles : '',
-        accessToken : ''
+        accessToken : '',
+        isLoggedByGoogle : null
     })
     return (
         <AuthContext.Provider value={{ auth, setAuth }}>

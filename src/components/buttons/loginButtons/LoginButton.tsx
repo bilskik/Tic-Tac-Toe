@@ -16,7 +16,7 @@ const LOGIN_URL = "/login"
 const LoginButton = ({text,username,password, clearInputFields, setServerError} : LoginButtonProps) => {
   const isSubmitted = true;
   const { usernameAlert, passwordAlert } = useLoginValidation(username, password, isSubmitted);
-  const  { auth, setAuth } = useAuth();
+  const  { setAuth } = useAuth();
   const handleSubmit = async (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if(usernameAlert.alertType === "" && passwordAlert.alertType === "") {
@@ -30,7 +30,8 @@ const LoginButton = ({text,username,password, clearInputFields, setServerError} 
           )
         const accessToken = response?.data?.accessToken;
         const roles = response?.data?.roles;
-        setAuth({username, password, accessToken, roles})
+        const isLoggedByGoogle = false;
+        setAuth({username, password, accessToken, roles, isLoggedByGoogle})
       } catch(err : any) {
         if(!err?.response) {
           setServerError("No server response!")
