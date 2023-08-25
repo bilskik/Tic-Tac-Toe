@@ -1,5 +1,6 @@
 package bilskik.tictactoe.service;
 
+import bilskik.tictactoe.DTO.StatisticsDTO;
 import bilskik.tictactoe.DTO.UserDTO;
 import bilskik.tictactoe.entities.User;
 import bilskik.tictactoe.entities.embedded.Statistics;
@@ -14,8 +15,9 @@ public class UserService {
     @Autowired
     public UserRepository userRepository;
     @Autowired
-    public MapperImpl<User,UserDTO> mapper;
-
+    public MapperImpl<User,UserDTO> userToDTOMapper;
+    @Autowired
+    public MapperImpl<Statistics, StatisticsDTO> statisticsToDTOMapper;
     public List<UserDTO> getAllUsers() {
         Statistics statistics = Statistics.builder()
                 .wins(2)
@@ -31,8 +33,9 @@ public class UserService {
                 .password("1234")
                 .statistics(statistics)
                 .build();
-        UserDTO userDTO1 = mapper.toDTO(user);
-        System.out.println(userDTO1);
-        return List.of(userDTO1);
+        StatisticsDTO statisticsDTO = statisticsToDTOMapper.toDTO(statistics);
+        UserDTO userDTO = userToDTOMapper.toDTO(user);
+        userDTO.statistics = statisticsDTO;
+        return List.of(userDTO);
     }
 }

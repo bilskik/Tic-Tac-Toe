@@ -10,5 +10,5 @@ import org.hibernate.stat.Statistics;
 public class UserDTO {
     public String username;
     public String email;
-    public Statistics statistics;
+    public StatisticsDTO statistics;
 }

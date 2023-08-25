@@ -1,11 +1,9 @@
 package bilskik.tictactoe.controller;
 
 import bilskik.tictactoe.DTO.UserDTO;
-import bilskik.tictactoe.entities.User;
 import bilskik.tictactoe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
