@@ -24,15 +24,18 @@ public class AuthenticationService {
     public AuthenticationResponse register(RegisterRequest req) {
         var user = User.builder()
                 .username(req.getUsername())
-                .email(req.getEmail())
                 .password(passwordEncoder.encode(req.getPassword()))
+                .statistics(req.getStatistics())
                 .build();
         userRepository.save(user);
-        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
-                .token(jwtService.generateJwtToken((UserDetails) user))
-                .build();
+        AuthenticationResponse authenticationResponse =
+                AuthenticationResponse.builder()
+                        .token(jwtService.generateJwtToken(user))
+                        .build();
+        System.out.println(authenticationResponse.getToken());
         return authenticationResponse;
     }
+
 
     public AuthenticationResponse login(RegisterRequest request) {
         authenticationManager.authenticate(
@@ -41,7 +44,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        UserDetails user = userRepository.findByEmail(request.getUsername()).orElseThrow();
+        User user = userRepository.findUserByUsername(request.getUsername()).orElseThrow();
         return  AuthenticationResponse.builder()
                 .token(jwtService.generateJwtToken(user))
                 .build();

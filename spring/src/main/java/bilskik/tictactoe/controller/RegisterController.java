@@ -23,6 +23,7 @@ public class RegisterController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) {
+        System.out.println("siema");
         return ResponseEntity.ok(authenticationService.register(request));
     }
     @PostMapping("/login")

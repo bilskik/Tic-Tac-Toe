@@ -1,5 +1,6 @@
 package bilskik.tictactoe.security;
 
+import bilskik.tictactoe.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,7 +16,7 @@ import java.util.function.Function;
 
 @Component
 public class JWTService {
-    String KEY = "yJXtNKIY97ERUsFmmBBJeeVaVzsP1Ln+WWRyEhKy";
+    String KEY = "yJXtNKIY97ERUsFmmBBJeeVaVzsP1Ln+WWRyEhKWWWWWAWSDAS12312313123yadsgh";
 
     public boolean validateJWT(String jwt, String username, UserDetails userDetails) {
         if(jwt != null) {
@@ -51,12 +52,12 @@ public class JWTService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
     public String generateJwtToken(
-            UserDetails userDetails
+            User user
     ) {
         return
                 Jwts
                         .builder()
-                        .setSubject(userDetails.getUsername())
+                        .setSubject(user.getUsername())
                         .setIssuedAt(new Date(System.currentTimeMillis()))
                         .setExpiration(new Date(System.currentTimeMillis() + 10000))
                         .signWith(getSigningKey(), SignatureAlgorithm.HS256)
@@ -64,13 +65,13 @@ public class JWTService {
     }
     public String generateJwtToken(
             Map<String, Object> extraClaims,
-            UserDetails userDetails
+            User user
     ) {
         return
                 Jwts
                         .builder()
                         .setClaims(extraClaims)
-                        .setSubject(userDetails.getUsername())
+                        .setSubject(user.getUsername())
                         .setIssuedAt(new Date(System.currentTimeMillis()))
                         .setExpiration(new Date(System.currentTimeMillis() + 10000))
                         .signWith(getSigningKey(), SignatureAlgorithm.HS256)

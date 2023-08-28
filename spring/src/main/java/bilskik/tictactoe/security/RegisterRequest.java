@@ -1,5 +1,6 @@
 package bilskik.tictactoe.security;
 
+import bilskik.tictactoe.entities.embedded.Statistics;
 import lombok.*;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,6 @@ import org.springframework.stereotype.Service;
 @Setter
 public class RegisterRequest {
     public String username;
-    public String email;
     public String password;
+    public Statistics statistics;
 }

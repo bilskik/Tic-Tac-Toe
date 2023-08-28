@@ -29,7 +29,6 @@ public class UserService {
         User user = User.builder()
                 .userId(1L)
                 .username("Kamil")
-                .email("kbilski@onet.pl")
                 .password("1234")
                 .statistics(statistics)
                 .build();
