@@ -17,6 +17,7 @@ const LoginButton = ({text,username,password, clearInputFields, setServerError} 
   const isSubmitted = true;
   const { usernameAlert, passwordAlert } = useLoginValidation(username, password, isSubmitted);
   const  { setAuth } = useAuth();
+
   const handleSubmit = async (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if(usernameAlert.alertType === "" && passwordAlert.alertType === "") {
@@ -25,13 +26,16 @@ const LoginButton = ({text,username,password, clearInputFields, setServerError} 
             JSON.stringify({username, password}),
             {
               headers : { 'Content-Type' : 'application/json'},
-              withCredentials: true
+              // withCredentials: true
             }
-          )
-        const accessToken = response?.data?.accessToken;
-        const roles = response?.data?.roles;
-        const isLoggedByGoogle = false;
-        setAuth({username, password, accessToken, roles, isLoggedByGoogle})
+          ).then((response) => {
+            console.log(response)
+            const accessToken :string= response?.data?.token;
+            console.log(accessToken);
+            const roles = response?.data?.roles;
+            const isLoggedByGoogle = false;
+            setAuth({username, password, accessToken, roles, isLoggedByGoogle})
+          })
       } catch(err : any) {
         if(!err?.response) {
           setServerError("No server response!")
@@ -40,12 +44,13 @@ const LoginButton = ({text,username,password, clearInputFields, setServerError} 
           setServerError("Login failed!")
         }
       }
-      clearInputFields();
+      // clearInputFields(); idk czy to usuwac czy nie
     }
     else {
 
     }
   }
+  
   return (
     <button
         type="submit"

@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from '../../../../components/buttons/Button'
 import { FaCrown } from "react-icons/fa";
 import { GiTrophyCup } from "react-icons/gi";
 import Ranksboard from './board/Ranksboard';
+import useFetch from '../../../../hooks/useFetch';
 const LeaderBoards = () => {
     const [boardType,setBoardType] = useState("leaderboard");
-
+    const [playerData, setPlayerData] = useState({});
+    const  fetchData  = useFetch("/users")
+    useEffect(() => {
+        const fetchDataAndProcess = async () => {
+            const data = await fetchData().then(
+                response => {
+                    setPlayerData(response);
+                }
+            );
+        } 
+        fetchDataAndProcess()
+    },[])
+    // ustalic co kiedy ma byc pobierane dane
     const handleLeaderBoardClick = () => {
         setBoardType("leaderboard");
     }

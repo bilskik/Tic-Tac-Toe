@@ -6,18 +6,17 @@ import bilskik.tictactoe.entities.User;
 import bilskik.tictactoe.entities.embedded.Statistics;
 import bilskik.tictactoe.mapper.MapperImpl;
 import bilskik.tictactoe.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    public UserRepository userRepository;
-    @Autowired
-    public MapperImpl<User,UserDTO> userToDTOMapper;
-    @Autowired
-    public MapperImpl<Statistics, StatisticsDTO> statisticsToDTOMapper;
+    public final UserRepository userRepository;
+    public final MapperImpl<User,UserDTO> userToDTOMapper;
+    public final MapperImpl<Statistics, StatisticsDTO> statisticsToDTOMapper;
     public List<UserDTO> getAllUsers() {
         Statistics statistics = Statistics.builder()
                 .wins(2)

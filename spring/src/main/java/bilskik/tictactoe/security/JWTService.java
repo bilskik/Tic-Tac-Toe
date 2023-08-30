@@ -52,20 +52,20 @@ public class JWTService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
     public String generateJwtToken(
-            User user
+            UserDetails user
     ) {
         return
                 Jwts
                         .builder()
                         .setSubject(user.getUsername())
                         .setIssuedAt(new Date(System.currentTimeMillis()))
-                        .setExpiration(new Date(System.currentTimeMillis() + 10000))
+                        .setExpiration(new Date(System.currentTimeMillis() + 1000*64*132))
                         .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                         .compact();
     }
     public String generateJwtToken(
             Map<String, Object> extraClaims,
-            User user
+            UserDetails user
     ) {
         return
                 Jwts

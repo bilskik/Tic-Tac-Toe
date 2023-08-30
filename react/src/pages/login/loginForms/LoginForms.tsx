@@ -17,24 +17,30 @@ const LoginForms = ({ serverError, serverAlert } : LoginFormsProps) => {
     const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
     const isSubmitted = false;
     const { usernameAlert, passwordAlert } = useLoginValidation(username, password, isSubmitted);
+
     const validateUsername = (user : string) => {
         setUsername(user)
     }
+
     const validatePassword = (pass : string) => {
         setPassword(pass);
     }
+
     const clearInputFields = () => {
         setUsername('');
         setPassword('');
     }
+
     const setServerError = (message : string) => {
         serverError(message)
     }
+    
     const handleCheckFocus = () => {
         if(document.activeElement === usernameInputRef.current || document.activeElement === passwordInputRef.current) {
             serverAlert(false);
         }
     }
+
   return (
     <form action="" className="loginforms">
         <label htmlFor="email" className="loginforms__label">

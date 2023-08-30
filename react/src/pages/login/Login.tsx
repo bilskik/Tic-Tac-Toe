@@ -8,10 +8,12 @@ import LoginAlert from "../../components/alerts/loginalert/LoginAlert";
 import jwt_decode from "jwt-decode";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
-const LOGIN_URL = "/login"
+const LOGIN_URL = "/register"
 
 const Login = () => {
-  const  { setAuth } = useAuth();
+
+    const  { setAuth } = useAuth();
+
     const handleGoogleLogin = async (resData : any) => {
         const accessToken = resData.access_token;
         const isLoggedByGoogle = true;
@@ -27,6 +29,7 @@ const Login = () => {
 
         }
     }
+
     const login = useGoogleLogin({
         onSuccess: tokenResponse => handleGoogleLogin(tokenResponse),
         onError: tokenResponse => handleGoogleLogin(tokenResponse)
@@ -36,18 +39,21 @@ const Login = () => {
         isAlert : false,
         errorMessage : ""
     });
+
     const serverError = (message : string) => {
         setServerErrorAlert({
             isAlert : true,
             errorMessage : message
         });
     }
+
     const serverAlert = (isShowed : boolean) => {
         setServerErrorAlert({
             ...serverErrorAlert,
             isAlert: false,
         })
     }  
+    
     return (
         <div className='loginpage'>
             <div className="logincontainer">
