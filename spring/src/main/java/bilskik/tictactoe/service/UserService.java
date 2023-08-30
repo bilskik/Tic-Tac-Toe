@@ -22,18 +22,32 @@ public class UserService {
                 .wins(2)
                 .draws(2)
                 .loses(3)
+                .score(250)
                 .build();
-        System.out.println();
-        System.out.println();
+        Statistics statistics2 = Statistics.builder()
+                .wins(2)
+                .draws(2)
+                .loses(3)
+                .score(250)
+                .build();
         User user = User.builder()
                 .userId(1L)
                 .username("Kamil")
                 .password("1234")
                 .statistics(statistics)
                 .build();
+        User user2 = User.builder()
+                .userId(2L)
+                .username("Misiek")
+                .password("mis")
+                .statistics(statistics2)
+                .build();
         StatisticsDTO statisticsDTO = statisticsToDTOMapper.toDTO(statistics);
         UserDTO userDTO = userToDTOMapper.toDTO(user);
         userDTO.statistics = statisticsDTO;
-        return List.of(userDTO);
+        StatisticsDTO statisticsDTO2 = statisticsToDTOMapper.toDTO(statistics2);
+        UserDTO userDTO2 = userToDTOMapper.toDTO(user2);
+        userDTO2.statistics = statisticsDTO2;
+        return List.of(userDTO,userDTO2);
     }
 }

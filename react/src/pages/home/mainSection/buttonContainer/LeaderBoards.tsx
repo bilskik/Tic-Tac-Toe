@@ -4,9 +4,27 @@ import { FaCrown } from "react-icons/fa";
 import { GiTrophyCup } from "react-icons/gi";
 import Ranksboard from './board/Ranksboard';
 import useFetch from '../../../../hooks/useFetch';
+interface PlayerRanks {
+    id: number,
+    username: string,
+    statistics : Statistics
+}
+interface LeaderboardRanks {
+    id: number;
+    username: string;
+    statistics : Statistics
+  }
+  interface Statistics {
+    draws : number;
+    loses : number;
+    wins : number;
+    score : number
+  }
+
+
 const LeaderBoards = () => {
     const [boardType,setBoardType] = useState("leaderboard");
-    const [playerData, setPlayerData] = useState({});
+    const [playerData, setPlayerData] = useState<LeaderboardRanks[] | PlayerRanks[]>();
     const  fetchData  = useFetch("/users")
     useEffect(() => {
         const fetchDataAndProcess = async () => {
@@ -34,7 +52,10 @@ const LeaderBoards = () => {
             <FaCrown className='icons__crown'/>
         </div>
         <div className="menucontainer_listranks">
-            <Ranksboard type={boardType}/>
+            <Ranksboard 
+                type={boardType}
+                playerData={playerData}
+            />
         </div>
     </>
     )

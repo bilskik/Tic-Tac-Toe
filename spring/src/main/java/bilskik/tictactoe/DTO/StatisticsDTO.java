@@ -13,4 +13,5 @@ public class StatisticsDTO {
     public int wins;
     public int draws;
     public int loses;
+    public int score;
 }
