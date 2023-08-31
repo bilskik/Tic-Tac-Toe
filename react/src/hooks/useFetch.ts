@@ -9,8 +9,6 @@ const useFetch = ( url : string) => {
                 headers : { 'Content-Type' : 'application/json'}
             }
         )
-        console.log("I am in useFetch")
-        console.log(response.data)
         return response.data;
         } catch(err : any) {
             //create error 

@@ -1,8 +1,6 @@
 package bilskik.tictactoe.controller;
 
-import bilskik.tictactoe.security.AuthenticationRequest;
-import bilskik.tictactoe.security.AuthenticationResponse;
-import bilskik.tictactoe.security.RegisterRequest;
+import bilskik.tictactoe.security.*;
 import bilskik.tictactoe.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
@@ -15,18 +13,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 @RestController
 @CrossOrigin
 @RequiredArgsConstructor
 public class RegisterController {
 
     private final AuthenticationService authenticationService;
+
+
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
+//    @PostMapping("/oauth/login")
+//    public ResponseEntity<AuthenticationResponse> oauthRegister(
+//            @RequestBody OAuthRequest request
+//    ) throws GeneralSecurityException, IOException {
+//        return ResponseEntity.ok(authenticationService.register(request));
+//    }
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(
             @RequestBody RegisterRequest request

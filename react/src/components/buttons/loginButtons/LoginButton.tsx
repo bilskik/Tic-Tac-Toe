@@ -11,7 +11,7 @@ interface LoginButtonProps {
     clearInputFields : () => void
     setServerError : (message : string) => void
 }
-const LOGIN_URL = "/login"
+const LOGIN_URL = "/register"
 
 const LoginButton = ({text,username,password, clearInputFields, setServerError} : LoginButtonProps) => {
   const isSubmitted = true;
@@ -50,7 +50,7 @@ const LoginButton = ({text,username,password, clearInputFields, setServerError} 
 
     }
   }
-  
+
   return (
     <button
         type="submit"

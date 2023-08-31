@@ -1,11 +1,13 @@
 import Navbar from './navbar/Navbar'
 import "./home.css"
 import MainSection from './mainSection/MainSection'
-
+import useAuth from '../../hooks/useAuth'
 const Home = () => {
+  const { auth } = useAuth();
+  
   return (
     <div className='page__home'>
-        <Navbar nickName={`xKamil0`}/>
+        <Navbar nickName={`${auth.username}`}/>
         <MainSection/>
     </div>
   )

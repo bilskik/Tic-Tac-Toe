@@ -12,5 +12,5 @@ import org.springframework.stereotype.Service;
 public class RegisterRequest {
     public String username;
     public String password;
-    public Statistics statistics;
+//    public Statistics statistics;
 }

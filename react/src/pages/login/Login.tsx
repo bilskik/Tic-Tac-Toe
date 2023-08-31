@@ -1,45 +1,43 @@
 import { AiFillGoogleCircle,AiOutlineUser, AiOutlineCheck } from "react-icons/ai"
 import { Link } from "react-router-dom";
 import LoginForms from "./loginForms/LoginForms";
-import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { useState } from "react";
 import "./login.css"
 import LoginAlert from "../../components/alerts/loginalert/LoginAlert";
-import jwt_decode from "jwt-decode";
-import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
-const LOGIN_URL = "/register"
+import axios from "../../api/axios";
+const LOGIN_URL = "/oauth/login"
 
 const Login = () => {
 
     const  { setAuth } = useAuth();
-
-    const handleGoogleLogin = async (resData : any) => {
-        const accessToken = resData.access_token;
-        const isLoggedByGoogle = true;
-        setAuth({accessToken, isLoggedByGoogle})
-        try { 
-            const response = await axios.post(LOGIN_URL, {
-                headers : {
-                    'Content-Type' : 'application/json',
-                    'Authorization' : `Bearer + ${accessToken}`
-                }
-            })
-        } catch(err : any) {
-
-        }
-    }
-
-    const login = useGoogleLogin({
-        onSuccess: tokenResponse => handleGoogleLogin(tokenResponse),
-        onError: tokenResponse => handleGoogleLogin(tokenResponse)
-    });
 
     const [serverErrorAlert, setServerErrorAlert] = useState({
         isAlert : false,
         errorMessage : ""
     });
 
+    const handleGoogleLogin = async (resData : any) => {
+        console.log(resData.credential)
+        const token = `Bearer ${resData.credential}`;
+        // try {
+        //     const response = axios.post(LOGIN_URL, 
+        //          JSON.stringify(token) , {
+        //         headers : { 
+        //             'Content-Type' : 'application/json',
+        //         }
+        //     }).then(res => {
+        //     })
+
+        // } catch(err : any) {
+
+        // }
+
+    }
+    const handleErrorGoogleLogin = () => {
+
+    } 
     const serverError = (message : string) => {
         setServerErrorAlert({
             isAlert : true,
@@ -53,7 +51,7 @@ const Login = () => {
             isAlert: false,
         })
     }  
-    
+
     return (
         <div className='loginpage'>
             <div className="logincontainer">
@@ -71,15 +69,20 @@ const Login = () => {
                     <p>
                         Log in with
                     </p>
-                    <AiFillGoogleCircle
-                        className="logincontainer__googleicon"
-                        onClick={() => login()}
-                    /> 
+                    <div className="logincontainer__googolebtn">
+                        <GoogleLogin
+                            onSuccess={handleGoogleLogin}
+                            onError={handleErrorGoogleLogin}
+                        />
+                    </div>
                 </div>
+
                 <p className="logincontainer__newaccount">
                     New to Tic-Tac-Toe?&nbsp;
                     <Link to="/signup" className="logincontainer__newaccount">
-                        <span className="logincontainer__newaccount-underline">
+                        <span 
+                            className="logincontainer__newaccount-underline"
+                        >
                             Create account
                         </span>
                     </Link>
