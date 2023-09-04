@@ -20,12 +20,18 @@ interface LeaderboardRanks {
     wins : number;
     score : number
   }
-
+  type useFetchProps = {
+    url : string,
+    isJWT : boolean
+  }
 
 const LeaderBoards = () => {
     const [boardType,setBoardType] = useState("leaderboard");
     const [playerData, setPlayerData] = useState<LeaderboardRanks[] | PlayerRanks[]>();
-    const  fetchData  = useFetch("/users")
+    const  fetchData  = useFetch({ 
+        url : "/users",
+        isJWT :  false
+    })
     useEffect(() => {
         const fetchDataAndProcess = async () => {
             const data = await fetchData().then(

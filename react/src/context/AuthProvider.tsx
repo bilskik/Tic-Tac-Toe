@@ -4,16 +4,7 @@ type AuthStateType = {
     auth : AuthState;
     setAuth : React.Dispatch<React.SetStateAction<AuthState>>
 }
-const AuthContext = createContext<AuthStateType>({
-    auth : {
-        username : '',
-        password : '',
-        roles : '',
-        accessToken : '',
-        isLoggedByGoogle : null
-    },
-    setAuth: () => undefined
-});
+
 
 interface AuthProviderProps {
     children : ReactNode
@@ -26,6 +17,18 @@ interface AuthState {
     accessToken : string
     isLoggedByGoogle? : boolean | null
 }
+
+const AuthContext = createContext<AuthStateType>({
+    auth : {
+        username : '',
+        password : '',
+        roles : '',
+        accessToken : '',
+        isLoggedByGoogle : null
+    },
+    setAuth: () => undefined
+});
+
 export const AuthProvider = ({ children } : AuthProviderProps) => {
     const [auth,setAuth] = useState<AuthState>({
         username : '',

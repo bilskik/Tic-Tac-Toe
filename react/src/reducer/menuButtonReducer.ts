@@ -1,9 +1,9 @@
-export const menuButtonInitState = {
+export const menuButtonInitState : menuButtonInitStateType= {
     showQuickPlayMenuPopup : false,
     showPlayRankedMenuPopup : false,
     showPlayWithFriendMenuPopup : false,
   }
-type menuButtonInitStateType = {
+export type menuButtonInitStateType = {
     showQuickPlayMenuPopup : boolean,
     showPlayRankedMenuPopup : boolean,
     showPlayWithFriendMenuPopup : boolean
@@ -14,7 +14,7 @@ export const enum REDUCER_ACTION_TYPE {
     PLAY_WITH_FRIEND_MENU
   }
   
-  type ReducerAction = {
+  export type ReducerAction = {
     type: REDUCER_ACTION_TYPE
   }
  export const menuButtonReducer = (state : typeof menuButtonInitState, action : ReducerAction) => {

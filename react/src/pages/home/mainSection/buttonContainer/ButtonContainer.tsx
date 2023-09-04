@@ -1,17 +1,16 @@
 import { useState } from "react";
 import Button from "../../../../components/buttons/Button";
-
-
-
+import useGameMenuDisplay from "../../../../hooks/useGameMenuDisplay";
+import { REDUCER_ACTION_TYPE } from "../../../../reducer/menuButtonReducer";
 type buttonPlayContainerType = {
   displayPlayWithFriendPopup  : () => void
 }
 
 const ButtonPlayContainer = ( { displayPlayWithFriendPopup } : buttonPlayContainerType ) => {
-    const buttonTextData = ["Quick play", "Play ranked", "Play with friend"];
-    const [playWithFriendPopup, setPlayWithFriendPopup] = useState(false);
+    const { state, dispatch } = useGameMenuDisplay();
     const handlePlayWithFriendClick = () => {
-      displayPlayWithFriendPopup()
+      dispatch({ type : REDUCER_ACTION_TYPE.PLAY_WITH_FRIEND_MENU});
+      console.log(state.showPlayWithFriendMenuPopup);
     }
     return (
       <div className="menucontainer__buttons">

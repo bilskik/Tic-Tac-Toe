@@ -1,6 +1,4 @@
-import { BlobOptions } from "buffer";
-import { playersData, playersRankData } from "../../../../../constraints/boardData";
-import PopupInfo from "../../popupinfo/PopupInfo";
+import PopupInfo from "../../popup/popupinfo/PopupInfo";
 import "./ranksboard.css"
 import { useEffect, useState } from "react";
 interface PlayerRanks {

@@ -1,7 +1,4 @@
 .page__home {
     background-color: var(--color-mainmenu);
     height: 100vh;
-    /* height: 100%; */
-    /* display: flex; */
-    /* flex-direction: column; */
 }

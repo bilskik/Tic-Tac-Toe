@@ -1,12 +1,30 @@
 import axios from '../api/axios'
+import useAuth from './useAuth'
 
-const useFetch = ( url : string) => {
-    let data = {};
+type useFetchProps = {
+    url : string,
+    isJWT : boolean
+}
+
+const useFetch = ({url, isJWT }  : useFetchProps) => {
+    const { auth } = useAuth();
     const fetchData = async () => {
-    try {
+        let requestHeader;
+        if(isJWT) {
+            requestHeader = {
+                'ContentType' : 'application/json',
+                'Authorization' : `Bearer ${auth.accessToken}`
+            }
+        }
+        else {
+            requestHeader = {
+                'ContentType' : 'application/json'
+            }
+        }
+        try {
         const response = await axios.get(url,
             { 
-                headers : { 'Content-Type' : 'application/json'}
+                headers : requestHeader
             }
         )
         return response.data;

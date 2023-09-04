@@ -3,6 +3,7 @@ import { Home, Settings, Statistics, Login }  from "./pages"
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { clientInfo } from "./constraints/clientId";
 import "./app.css"
+import { MenuDisplayProvider } from "./context/MenuDisplayProvider";
 const App = () => {
   const routes = createBrowserRouter([
     {
@@ -33,7 +34,9 @@ const App = () => {
 
   return (
     <GoogleOAuthProvider clientId={clientInfo.clientId}>
-      <RouterProvider router={routes}/>
+      <MenuDisplayProvider>
+        <RouterProvider router={routes}/>
+      </MenuDisplayProvider>
     </GoogleOAuthProvider>
   )
 }
