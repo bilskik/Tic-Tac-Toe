@@ -5,7 +5,26 @@ import { clientInfo } from "./constraints/clientId";
 import "./app.css"
 import { MenuDisplayProvider } from "./context/MenuDisplayProvider";
 import GameBoard from "./pages/gameboard/GameBoard";
+import useGame from "./hooks/useGame";
+import useAuth from "./hooks/useAuth";
+import { useEffect } from "react";
+
 const App = () => {
+  const { gameData,setGameData} = useGame();
+  const { auth, setAuth } = useAuth();
+  
+  useEffect(() => {
+    const refreshChecker = () => {
+      if(performance.getEntriesByType("navigation")[0]) {
+        setAuth({
+          username : "",
+          accessToken : ""
+        })
+      }
+    }
+    refreshChecker();
+  },[])
+
   const routes = createBrowserRouter([
     {
       path: "",
@@ -32,7 +51,7 @@ const App = () => {
       )
     },
     {
-      path: "/game",
+      path: `/${gameData.gameCode}`,
       element: (
           <GameBoard/>
       )

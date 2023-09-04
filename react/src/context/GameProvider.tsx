@@ -19,7 +19,7 @@ const GameContext = createContext<GameContextType>({
     setGameData : () => undefined
 
 })
-const GameProvider = ({ children } : GameProviderProps) => {
+export const GameProvider = ({ children } : GameProviderProps) => {
     const [gameData, setGameData] = useState({
         gameCode : ""
     });
@@ -30,4 +30,4 @@ const GameProvider = ({ children } : GameProviderProps) => {
     )
 }
 
-export default GameProvider
+export default GameContext

@@ -38,7 +38,6 @@ public class AuthenticationService {
                 AuthenticationResponse.builder()
                         .token(jwtService.generateJwtToken(user))
                         .build();
-        System.out.println(authenticationResponse.getToken());
         return authenticationResponse;
     }
 
@@ -52,6 +51,18 @@ public class AuthenticationService {
         );
         User user = userRepository.findUserByUsername(request.getUsername()).orElseThrow();
         return  AuthenticationResponse.builder()
+                .token(jwtService.generateJwtToken(user))
+                .build();
+    }
+    public AuthenticationResponse refreshToken(RegisterRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
+        );
+        User user = userRepository.findUserByUsername(request.getUsername()).orElseThrow();
+        return AuthenticationResponse.builder()
                 .token(jwtService.generateJwtToken(user))
                 .build();
     }

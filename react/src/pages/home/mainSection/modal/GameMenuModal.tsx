@@ -4,18 +4,23 @@ import { REDUCER_ACTION_TYPE } from "../../../../reducer/menuButtonReducer";
 import { useState } from "react";
 import "./gamemenumodal.css"
 import useAuth from "../../../../hooks/useAuth";
+import useGame from "../../../../hooks/useGame";
 
 const GameMenuModal = () => {
   const { state, dispatch } = useGameMenuDisplay();
+  const { gameData, setGameData }  = useGame();
   const [code,setCode] = useState<string | null>();
   const { auth } = useAuth();
-  console.log(auth.accessToken)
+
   const handleClickOnBackgroundModal = () => {
     dispatch({ type : REDUCER_ACTION_TYPE.PLAY_WITH_FRIEND_MENU});
     setCode(null);
   }
   const handleSetCode = (code : string) => {
       setCode(code);
+      setGameData({
+        gameCode : code
+      });
   }
   return (
     <div className="modal" >
