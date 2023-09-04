@@ -19,4 +19,15 @@
     position: absolute;
     background-color: white;
     opacity: 1;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.modal__generatecode {
+    padding: 0.3rem;
+    margin-bottom: 20px;
+}
+.modal__text {
+    font-size: 1.4rem;
 }

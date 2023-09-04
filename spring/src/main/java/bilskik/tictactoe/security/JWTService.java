@@ -20,7 +20,7 @@ public class JWTService {
 
     public boolean validateJWT(String jwt, String username, UserDetails userDetails) {
         if(jwt != null) {
-            return (username.equals(userDetails.getUsername())) && isTokenExpired(jwt);
+            return (username.equals(userDetails.getUsername())) && !isTokenExpired(jwt);
         }
         return false;
     }

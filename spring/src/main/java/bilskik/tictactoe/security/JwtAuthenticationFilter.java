@@ -31,6 +31,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 //        access token to check
         String authHeader = request.getHeader("Authorization");
         String jwt;
+        System.out.println(authHeader);
+        System.out.println(request);
         if(authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
@@ -39,7 +41,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String username = jwtService.extractUsername(jwt);
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            System.out.println(jwtService.validateJWT(jwt,username,userDetails));
             if(jwtService.validateJWT(jwt,username,userDetails)) {
+                System.out.println("SIEMAAAA");
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,

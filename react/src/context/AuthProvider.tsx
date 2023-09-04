@@ -5,7 +5,6 @@ type AuthStateType = {
     setAuth : React.Dispatch<React.SetStateAction<AuthState>>
 }
 
-
 interface AuthProviderProps {
     children : ReactNode
 }

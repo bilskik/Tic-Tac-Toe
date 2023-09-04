@@ -8,7 +8,6 @@ import GameMenuModal from './mainSection/modal/GameMenuModal'
 const Home = () => {
   const { auth } = useAuth();
   const { state, dispatch } = useGameMenuDisplay();
-  console.log(state.showPlayWithFriendMenuPopup)
   return (
     <div className='page__home'>
         {

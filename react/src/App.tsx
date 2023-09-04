@@ -4,6 +4,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { clientInfo } from "./constraints/clientId";
 import "./app.css"
 import { MenuDisplayProvider } from "./context/MenuDisplayProvider";
+import GameBoard from "./pages/gameboard/GameBoard";
 const App = () => {
   const routes = createBrowserRouter([
     {
@@ -28,6 +29,12 @@ const App = () => {
       path: "/login",
       element : (
           <Login/>
+      )
+    },
+    {
+      path: "/game",
+      element: (
+          <GameBoard/>
       )
     }
   ]);

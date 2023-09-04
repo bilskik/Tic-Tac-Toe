@@ -13,11 +13,15 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin
+@CrossOrigin()
 public class UserController {
     public final UserService userService;
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+    }
+    @GetMapping("/game")
+    public ResponseEntity<String> generateGameCode() {
+        return new ResponseEntity<>(userService.generateCode(), HttpStatus.OK);
     }
 }

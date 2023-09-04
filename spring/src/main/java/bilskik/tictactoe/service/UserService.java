@@ -9,7 +9,10 @@ import bilskik.tictactoe.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.security.SecureRandom;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +20,9 @@ public class UserService {
     public final UserRepository userRepository;
     public final MapperImpl<User,UserDTO> userToDTOMapper;
     public final MapperImpl<Statistics, StatisticsDTO> statisticsToDTOMapper;
+
+    public int CODE_LENGTH = 10;
+    public int SEED = 1212312;
     public List<UserDTO> getAllUsers() {
         Statistics statistics = Statistics.builder()
                 .wins(2)
@@ -49,5 +55,16 @@ public class UserService {
         UserDTO userDTO2 = userToDTOMapper.toDTO(user2);
         userDTO2.statistics = statisticsDTO2;
         return List.of(userDTO,userDTO2);
+    }
+    public String generateCode() {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder randomString = new StringBuilder();
+        SecureRandom random = new SecureRandom();
+        for(int i=0; i<CODE_LENGTH; i++) {
+            int randomIndex = random.nextInt(characters.length());
+            char randomChar = characters.charAt(randomIndex);
+            randomString.append(randomChar);
+        }
+        return randomString.toString();
     }
 }
