@@ -16,13 +16,14 @@ type buttonProps = {
     onClick? : () => void,
 }
 const Button = (props: buttonProps) => {
-  const [hovered,setHovered] = useState(false);
+  const [hovered,setHovered] = useState<boolean>(false);
+  const [classNameStyle,setClassNameStyle] = useState<string>("");
   const style = {
     backgroundColor: hovered ? colors.backgroundColorHover : colors.backgroundColor,
     color:  hovered ? colors.textColorHover  : colors.textColor,
     borderColor: hovered ? colors.borderColorHover : colors.borderColor
   }
-  const [classNameStyle,setClassNameStyle] = useState("");
+
   const handleMouseEnter = () => {
     setHovered(true);
   }

@@ -5,10 +5,37 @@ import { Link, useNavigate } from "react-router-dom"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
 
 //add mobile animations
 const Navbar = ({nickName} : { nickName : string}) => {
-  const [isOpen,setIsOpen] = useState(false);
+  const [isOpen,setIsOpen] = useState<boolean>(false);
+  const [isLoginBtn, setIsLoginBtn] = useState<boolean>(true);
+  const { auth, setDestroyAuth }   = useAuth();
+
+ 
+
+  useEffect(() => {
+    console.log(auth.username)
+    console.log(isLoginBtn);
+    console.log("useEffect")
+    console.log(" Aith " + auth.isRefreshed)
+    if(auth.username && auth.accessToken) {
+      setIsLoginBtn(false);
+    } else {
+      setIsLoginBtn(true);
+    }
+    console.log(" AUth" + auth.isRefreshed)
+  },[auth.isRefreshed])
+
+  const handleLogout = () => {
+    setDestroyAuth()
+    console.log("Handle1")
+    setIsLoginBtn(true);
+    console.log("Handle2")
+
+  }
+
   return (
       <header className="header">
         <div className="header__title">
@@ -16,9 +43,15 @@ const Navbar = ({nickName} : { nickName : string}) => {
         </div>
         <div className="header__buttons">
             <HeaderNav nickName={nickName}/>
-            <Link to="/login">
-              <Button style={`login`} id={`login`}/>
-            </Link>
+              { 
+                isLoginBtn ? 
+                  <Link to="/login">
+                    <Button style={`login`} id={`login`}/>
+                  </Link>
+                 :
+                <Button style={`logout`} id={`login`} onClick={handleLogout}/>
+
+              }
         </div>
         {
           isOpen ? <IoClose className="icons icons__close" onClick={() => {setIsOpen(false)}} /> 
@@ -31,9 +64,12 @@ const Navbar = ({nickName} : { nickName : string}) => {
       </header>
   )
 }
+
+
 type headerData = {
   nickName : string,
 }
+
 const HeaderNav = (props : headerData) => {
   return (
     <>

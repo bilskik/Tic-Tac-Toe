@@ -3,6 +3,7 @@ import useLoginValidation from "../../../hooks/useLoginValidation";
 import "./loginbutton.css"
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 interface LoginButtonProps {
     text: string
@@ -17,6 +18,7 @@ const LoginButton = ({text,username,password, clearInputFields, setServerError} 
   const isSubmitted = true;
   const { usernameAlert, passwordAlert } = useLoginValidation(username, password, isSubmitted);
   const  { setAuth } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -35,6 +37,7 @@ const LoginButton = ({text,username,password, clearInputFields, setServerError} 
             const roles = response?.data?.roles;
             const isLoggedByGoogle = false;
             setAuth({username, password, accessToken, roles, isLoggedByGoogle})
+            navigate("/");
           })
       } catch(err : any) {
         if(!err?.response) {
