@@ -5,6 +5,7 @@ import { useState } from "react";
 import "./gamemenumodal.css"
 import useAuth from "../../../../hooks/useAuth";
 import useGame from "../../../../hooks/useGame";
+import { Link } from "react-router-dom";
 
 const GameMenuModal = () => {
   const { state, dispatch } = useGameMenuDisplay();
@@ -35,7 +36,9 @@ const GameMenuModal = () => {
               { code }
             </span>
           }
-          <button onClick={(e) => {handleSetCode("siasdas")}}>Play</button>
+          <Link to={`${gameData.gameCode}`}>
+            <button>Play</button>
+          </Link>
         </div>
     </div>
   )

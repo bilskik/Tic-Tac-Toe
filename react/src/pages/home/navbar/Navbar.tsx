@@ -12,28 +12,18 @@ const Navbar = ({nickName} : { nickName : string}) => {
   const [isOpen,setIsOpen] = useState<boolean>(false);
   const [isLoginBtn, setIsLoginBtn] = useState<boolean>(true);
   const { auth, setDestroyAuth }   = useAuth();
-
  
-
   useEffect(() => {
-    console.log(auth.username)
-    console.log(isLoginBtn);
-    console.log("useEffect")
-    console.log(" Aith " + auth.isRefreshed)
     if(auth.username && auth.accessToken) {
       setIsLoginBtn(false);
     } else {
       setIsLoginBtn(true);
     }
-    console.log(" AUth" + auth.isRefreshed)
   },[auth.isRefreshed])
 
   const handleLogout = () => {
     setDestroyAuth()
-    console.log("Handle1")
     setIsLoginBtn(true);
-    console.log("Handle2")
-
   }
 
   return (
