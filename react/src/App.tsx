@@ -51,7 +51,8 @@ const App = () => {
       )
     },
     {
-      path: `/${gameData.gameCode}`,
+      // path: `/${gameData.gameCode}`,
+      path : "/game",
       element: (
           <GameBoard/>
       )
