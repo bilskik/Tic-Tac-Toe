@@ -4,6 +4,8 @@
     font-size: 1.3rem;
     margin-top: 1rem;
     font-family: var(--font-family);
+    /* position: absolute; */
+    z-index: 99;
 }
 .scoreboard__container {
     display: flex;
