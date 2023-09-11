@@ -1,6 +1,6 @@
 # Tic-Tac-Toe
-Tic-Tac-Toe app, allows to compete and play with friends in popular game, tic-tac-toe. 
-#Tech stack:
+Tic-Tac-Toe app, allows to compete and play with friends in popular game, tic-tac-toe.  <br>
+# Tech stack:
 <ul>
   <li>Typescript v4.9.5</li>
   <li>React v18.2.0</li>
