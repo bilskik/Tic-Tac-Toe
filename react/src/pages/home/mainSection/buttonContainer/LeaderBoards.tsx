@@ -4,26 +4,8 @@ import { FaCrown } from "react-icons/fa";
 import { GiTrophyCup } from "react-icons/gi";
 import Ranksboard from './board/Ranksboard';
 import useFetch from '../../../../hooks/useFetch';
-interface PlayerRanks {
-    id: number,
-    username: string,
-    statistics : Statistics
-}
-interface LeaderboardRanks {
-    id: number;
-    username: string;
-    statistics : Statistics
-  }
-  interface Statistics {
-    draws : number;
-    loses : number;
-    wins : number;
-    score : number
-  }
-  type useFetchProps = {
-    url : string,
-    isJWT : boolean
-  }
+import { LeaderboardRanks, PlayerRanks } from './shared.types';
+
 
 const LeaderBoards = () => {
     const [boardType,setBoardType] = useState("leaderboard");

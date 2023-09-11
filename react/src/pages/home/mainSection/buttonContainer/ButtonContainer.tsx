@@ -2,10 +2,10 @@ import { useState } from "react";
 import Button from "../../../../components/buttons/Button";
 import useGameMenuDisplay from "../../../../hooks/useGameMenuDisplay";
 import { REDUCER_ACTION_TYPE } from "../../../../reducer/menuButtonReducer";
+
 type buttonPlayContainerType = {
   displayPlayWithFriendPopup  : () => void
 }
-
 const ButtonPlayContainer = ( { displayPlayWithFriendPopup } : buttonPlayContainerType ) => {
     const { state, dispatch } = useGameMenuDisplay();
     const handlePlayWithFriendClick = () => {

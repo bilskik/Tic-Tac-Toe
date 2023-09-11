@@ -7,8 +7,12 @@ import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 
-//add mobile animations
-const Navbar = ({nickName} : { nickName : string}) => {
+type NavbarProps = {
+  nickName : string
+} 
+
+//add mobile animation
+const Navbar = ({ nickName } : NavbarProps) => {
   const [isOpen,setIsOpen] = useState<boolean>(false);
   const [isLoginBtn, setIsLoginBtn] = useState<boolean>(true);
   const { auth, setDestroyAuth }   = useAuth();
@@ -55,12 +59,7 @@ const Navbar = ({nickName} : { nickName : string}) => {
   )
 }
 
-
-type headerData = {
-  nickName : string,
-}
-
-const HeaderNav = (props : headerData) => {
+const HeaderNav = ({nickName} : NavbarProps) => {
   return (
     <>
       <p className='header__text header__text-stats'>
@@ -74,7 +73,7 @@ const HeaderNav = (props : headerData) => {
         </Link>
       </p>
       <p className='header__text header__text-nickname'>
-        {props.nickName}
+        {nickName}
       </p>
     </>
   )

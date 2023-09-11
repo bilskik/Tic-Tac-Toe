@@ -2,12 +2,12 @@ import "./square.css"
 
 type SquareProps = {
     index : number;
-    click : (index : number) => void
+    handleSquareClick : (index : number) => void
 }
 
-const Square = ({index, click} : SquareProps) => {
+const Square = ({index, handleSquareClick} : SquareProps) => {
   return (
-    <div className="square" onClick={(e) => click(index)}>
+    <div className="square" onClick={(e) => handleSquareClick(index)}>
         Square
     </div>
   )

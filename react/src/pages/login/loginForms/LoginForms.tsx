@@ -5,7 +5,8 @@ import LoginAlert from "../../../components/alerts/loginalert/LoginAlert";
 import { AiOutlineUser, AiOutlineCheck } from "react-icons/ai"
 import useLoginValidation from "../../../hooks/useLoginValidation";
 import "./loginforms.css"
-interface LoginFormsProps {
+
+type LoginFormsProps = {
     serverError : (message : string) => void
     serverAlert : (isShowed : boolean) => void
 } 

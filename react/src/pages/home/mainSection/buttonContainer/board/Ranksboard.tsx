@@ -1,27 +1,9 @@
 import PopupInfo from "../../popup/popupinfo/PopupInfo";
 import "./ranksboard.css"
 import { useEffect, useState } from "react";
-interface PlayerRanks {
-    id: number,
-    username: string,
-    statistics : Statistics
-}
-interface LeaderboardRanks {
-    id: number;
-    username: string;
-    statistics : Statistics
-  }
-  interface Statistics {
-    draws : number;
-    loses : number;
-    wins : number;
-    score : number
-  }
-type RanksBoardType = {
-    type : string;
-    playerData : LeaderboardRanks[] | PlayerRanks[] | undefined
-}
-const Ranksboard = ({ type, playerData} : RanksBoardType) => {
+import { PlayerRanks, LeaderboardRanks, RanksBoardProps } from "../shared.types";
+
+const Ranksboard = ({ type, playerData} : RanksBoardProps) => {
     const [data,setData] = useState<PlayerRanks[] | LeaderboardRanks[]>();
     const [popupShow, setPopupShow] = useState<boolean>(false);
 
