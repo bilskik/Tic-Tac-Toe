@@ -1,5 +1,4 @@
 import "./scoreboard.css"
-
 const ScoreBoard = () => {
   let result1 = 2;
   let result2 = 3;

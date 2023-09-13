@@ -27,12 +27,8 @@ const AuthContext = createContext<AuthStateType>({
         isLoggedByGoogle : null,
         isRefreshed : false
     },
-    setAuth: (auth : AuthState) => {
-
-    },
-    setDestroyAuth: () => {
-
-    }
+    setAuth: (auth : AuthState) => undefined,
+    setDestroyAuth : () => undefined
 });
 
 export const AuthProvider = ({ children } : AuthProviderProps) => {

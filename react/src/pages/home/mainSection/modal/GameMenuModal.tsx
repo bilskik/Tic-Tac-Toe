@@ -12,7 +12,7 @@ import MarkGenerator from "./markgenerator/MarkGenerator";
 
 const GameMenuModal = () => {
   const { state, dispatch } = useGameMenuDisplay();
-  const { gameData, setGameData }  = useGame();
+  const { gameData, setGameData, saveData }  = useGame();
   const [code,setCode] = useState<string | null>();
 
   const handleClickOnBackgroundModal = () => {
@@ -27,6 +27,7 @@ const GameMenuModal = () => {
         gameCode : code
       });
       console.log(gameData);
+      saveData();
   }
   const handleRangeSlider = (value : number) => {
     setGameData({

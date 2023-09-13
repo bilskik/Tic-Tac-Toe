@@ -16,6 +16,7 @@ const App = () => {
   useEffect(() => {
     const refreshChecker = () => {
       if(performance.getEntriesByType("navigation")[0]) {
+        console.log("WITAM ")
         setAuth({
           username : "",
           accessToken : ""
