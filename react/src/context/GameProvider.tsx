@@ -10,12 +10,14 @@ type GameContextType = {
 type GameDataType = {
     gameCode : string,
     boardSize : number
+    markNumber : number
 }
 
 const GameContext = createContext<GameContextType>({
     gameData : {
         gameCode : "",
-        boardSize : 0
+        boardSize : 5,
+        markNumber : 3
     },
     setGameData : () => undefined
 
@@ -23,7 +25,8 @@ const GameContext = createContext<GameContextType>({
 export const GameProvider = ({ children } : GameProviderProps) => {
     const [gameData, setGameData] = useState({
         gameCode : "",
-        boardSize : 0
+        boardSize : 5,
+        markNumber : 3
     });
     return (
         <GameContext.Provider value={{ gameData, setGameData}}>

@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import GenerateCodeButton  from "../../../../components/buttons/generateCode/GenerateCodeButton";
 import useGameMenuDisplay from "../../../../hooks/useGameMenuDisplay"
 import { REDUCER_ACTION_TYPE } from "../../../../reducer/menuButtonReducer";
@@ -6,17 +7,18 @@ import "./gamemenumodal.css"
 import useAuth from "../../../../hooks/useAuth";
 import useGame from "../../../../hooks/useGame";
 import { Link } from "react-router-dom";
+import GameBoard from "../../../gameboard/GameBoard";
+import MarkGenerator from "./markgenerator/MarkGenerator";
 
 const GameMenuModal = () => {
   const { state, dispatch } = useGameMenuDisplay();
   const { gameData, setGameData }  = useGame();
   const [code,setCode] = useState<string | null>();
-  const [boardSizeValue, setBoardSizeValue] = useState<number>(3);
-  const { auth } = useAuth();
 
   const handleClickOnBackgroundModal = () => {
     dispatch({ type : REDUCER_ACTION_TYPE.PLAY_WITH_FRIEND_MENU});
     setCode(null);
+    // setGameData()  should be reset
   }
   const handleGameSetup = (code : string) => {
       setCode(code);
@@ -30,6 +32,12 @@ const GameMenuModal = () => {
     setGameData({
       ...gameData,
       boardSize : value
+    })
+  }
+  const handleSelectedMarkNumber = (value : number) => {
+    setGameData({
+      ...gameData,
+      markNumber : value
     })
   }
   return (
@@ -50,10 +58,9 @@ const GameMenuModal = () => {
             }
           />
           {gameData.boardSize}
-          <p className="modal__toWin">
-            Total marks to win:
-          </p>
-          
+          <MarkGenerator
+            handleSelectedMarkNumber={handleSelectedMarkNumber}
+          />
           <GenerateCodeButton
             handleSetCode={handleGameSetup}
           />
