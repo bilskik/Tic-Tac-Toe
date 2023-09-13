@@ -5,6 +5,7 @@ import useAuth from '../../hooks/useAuth'
 import { MenuDisplayProvider } from '../../context/MenuDisplayProvider'
 import useGameMenuDisplay from '../../hooks/useGameMenuDisplay'
 import GameMenuModal from './mainSection/modal/GameMenuModal'
+
 const Home = () => {
   const { auth } = useAuth();
   const { state, dispatch } = useGameMenuDisplay();

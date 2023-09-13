@@ -1,21 +1,29 @@
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import "./gameboard.css"
 import ScoreBoard from "./scoreboard/ScoreBoard"
 import Board from "./board/Board"
 import useGame from "../../hooks/useGame"
 
 const GameBoard = () => {
-  const { gameData, setGameData, getDataAfterRefresh} = useGame();
+  const { gameData, getDataAfterRefresh } = useGame();
   useEffect(() => {
     if(performance.getEntriesByType("navigation")[0]) {
       getDataAfterRefresh()
     }
   },[])
-  console.log("normalni")
+
+  const boardTotalSize = useMemo<number>(() => {
+    return gameData.boardSize * gameData.boardSize 
+  },[gameData])
+  console.log(boardTotalSize)
+
+
   return (
       <>
           <ScoreBoard/>
-          <Board/>
+          <Board
+            boardTotalSize={boardTotalSize}
+          />
       </>
     )
 }

@@ -30,25 +30,39 @@ const GameContext = createContext<GameContextType>({
 })
 export const GameProvider = ({ children } : GameProviderProps) => {
     const objectName = "gameData";
-    const defaultGameData = {
+    const defaultGameData : GameDataType = {
         gameCode : "",
         boardSize : 5,
         markNumber : 3
     }
-    const [gameData, setGameData] = useState<GameDataType>(defaultGameData);
+    const checkProperDefaultValue : () => GameDataType = () =>  {
+        const storedGameData = localStorage.getItem(objectName);
+        if(storedGameData != null) {
+            return JSON.parse(storedGameData);
+        } else {
+            return defaultGameData;
+        }
+    }
+    const dataToSet = checkProperDefaultValue();
+    const [gameData, setGameData] = useState<GameDataType>(dataToSet);
+    
     const saveData = () => {
         localStorage.setItem(objectName,JSON.stringify(gameData));
     }
     const getDataAfterRefresh = () => {
         const storedGameData = localStorage.getItem(objectName);
+        console.log(storedGameData)
         if(storedGameData != null) {
             setGameData(JSON.parse(storedGameData));
+        } else {
+            setGameData(defaultGameData)
         }
     }
     const removeData = () => {
         localStorage.removeItem(objectName);
         setGameData(defaultGameData)
     }
+
     return (
         <GameContext.Provider value={{ gameData, setGameData, getDataAfterRefresh, saveData, removeData}}>
             { children }

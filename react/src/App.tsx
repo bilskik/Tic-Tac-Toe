@@ -1,10 +1,9 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { Home, Settings, Statistics, Login }  from "./pages"
+import { Home, Settings, Statistics, Login, GameBoard }  from "./pages"
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { clientInfo } from "./constraints/clientId";
 import "./app.css"
 import { MenuDisplayProvider } from "./context/MenuDisplayProvider";
-import GameBoard from "./pages/gameboard/GameBoard";
 import useGame from "./hooks/useGame";
 import useAuth from "./hooks/useAuth";
 import { useEffect } from "react";

@@ -12,13 +12,13 @@ import MarkGenerator from "./markgenerator/MarkGenerator";
 
 const GameMenuModal = () => {
   const { state, dispatch } = useGameMenuDisplay();
-  const { gameData, setGameData, saveData }  = useGame();
+  const { gameData, setGameData, saveData, removeData }  = useGame();
   const [code,setCode] = useState<string | null>();
 
   const handleClickOnBackgroundModal = () => {
     dispatch({ type : REDUCER_ACTION_TYPE.PLAY_WITH_FRIEND_MENU});
     setCode(null);
-    // setGameData()  should be reset
+    removeData();
   }
   const handleGameSetup = (code : string) => {
       setCode(code);
