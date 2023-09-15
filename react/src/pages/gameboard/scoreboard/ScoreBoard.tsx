@@ -1,7 +1,55 @@
+import Stomp from "stompjs"
+import SockJs from "sockjs-client"
+import { useEffect, useState } from "react"
 import "./scoreboard.css"
+import useAuth from "../../../hooks/useAuth";
+import { send } from "process";
+
+
+
 const ScoreBoard = () => {
   let result1 = 2;
   let result2 = 3;
+  const { auth } = useAuth();
+  const [messages, setMessages] = useState<string[]>([]);
+  const [message,setMessage] = useState<string>('');
+  const [nickname,setNickname] = useState<string>('');
+  console.log(auth.accessToken);
+  const headers = {
+    'Content-Type' : 'application/json',
+    'Authorization' : `Bearer ${auth.accessToken}`
+  }
+  let client : Stomp.Client;
+  useEffect(() => {
+    console.log("Auth token " + auth.accessToken);
+    const socket = new SockJs(`http://localhost:8080/ws?token=${auth.accessToken}`);
+    client = Stomp.over(socket);
+    client.connect(headers, () => {
+      client.subscribe("/topic/message", (message) => {
+        const receivedMessage = JSON.parse(message.body);
+        console.log(receivedMessage)
+        setMessages((prevMessage : string[]) => [...prevMessage, receivedMessage])
+      })
+    })
+  },[])
+
+  const sendMessage = () => {
+    if(message.trim()) {
+      const chatMessage = {
+        sender : nickname, 
+        content : message
+      }
+      client.send('/app/chat', {}, JSON.stringify(chatMessage));
+      setMessage('');
+    }
+  }
+
+  const handleMessageChange = (e : any) => {
+    setMessage(e.target.value)
+  }
+  const handleNicknameChange = (e : any) => {
+    setNickname(e.target.value)
+  }
 
   return (
     <div className="scoreboard">
@@ -16,6 +64,11 @@ const ScoreBoard = () => {
           </p>
           <PlayerData/>
         </div>
+        <p>Nickname</p>
+        <textarea value={nickname} onChange={handleNicknameChange}></textarea>
+        <p>Message</p>
+        <textarea value={message} onChange={handleMessageChange}></textarea>
+        <button onClick={sendMessage}>Send</button>
       </div>
     </div>
   )
