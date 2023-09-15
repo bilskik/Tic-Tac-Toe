@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 public class GameController {
 
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
+    @MessageMapping("/chat")
+    @SendTo("/topic/message")
     public GameMessage sendMessage(
             @Payload GameMessage message
     ) {
