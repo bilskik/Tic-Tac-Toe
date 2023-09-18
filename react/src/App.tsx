@@ -4,68 +4,58 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { clientInfo } from "./constraints/clientId";
 import "./app.css"
 import { MenuDisplayProvider } from "./context/MenuDisplayProvider";
-import useGame from "./hooks/useGame";
 import useAuth from "./hooks/useAuth";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 const App = () => {
-  const { gameData,setGameData} = useGame();
-  const { auth, setAuth } = useAuth();
-  
-  useEffect(() => {
-    const refreshChecker = () => {
-      if(performance.getEntriesByType("navigation")[0]) {
-        console.log("WITAM ")
-        setAuth({
-          username : "",
-          accessToken : ""
-        })
-      }
-    }
-    refreshChecker();
-  },[])
+  const { getAuth } = useAuth();
+  const [routes, setRoutes] = useState<any>(null);
 
-  const routes = createBrowserRouter([
-    {
-      path: "",
-      element : (
-          <Home/>
-      )
-    },
-    {
-      path: "/settings",
-      element: (
-          <Settings/>
-      )
-    },
-    {
-      path: "/statistics",
-      element: (
-          <Statistics/>
-      )
-    }, 
-    {
-      path: "/login",
-      element : (
-          <Login/>
-      )
-    },
-    {
-      // path: `/${gameData.gameCode}`,
-      path : "/game",
-      element: (
-          <GameBoard/>
-      )
+  useEffect(() => {
+    const fetchData = async () => {
+      getAuth();
+      const createdRoutes= createBrowserRouter([
+        {
+          path: "",
+          element : (
+              <Home/>
+          )
+        },
+        {
+          path: "/settings",
+          element: (
+              <Settings/>
+          )
+        },
+        {
+          path: "/statistics",
+          element: (
+              <Statistics/>
+          )
+        }, 
+        {
+          path: "/login",
+          element : (
+              <Login/>
+          )
+        },
+        {
+          path : "/game",
+          element: (
+              <GameBoard/>
+          )
+        }
+      ]);
+      setRoutes(createdRoutes);
     }
-  ]);
+    fetchData();
+  }, []);
 
   return (
     <GoogleOAuthProvider clientId={clientInfo.clientId}>
       <MenuDisplayProvider>
-        <RouterProvider router={routes}/>
+        {routes ? <RouterProvider router={routes} /> : null}
       </MenuDisplayProvider>
     </GoogleOAuthProvider>
   )
 }
-
 export default App

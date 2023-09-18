@@ -19,10 +19,11 @@ const ScoreBoard = () => {
     'Content-Type' : 'application/json',
     'Authorization' : `Bearer ${auth.accessToken}`
   }
+  const socket = new SockJs(`http://localhost:8080/ws?token=${auth.accessToken}`);
+
   let client : Stomp.Client;
   useEffect(() => {
-    console.log("Auth token " + auth.accessToken);
-    const socket = new SockJs(`http://localhost:8080/ws?token=${auth.accessToken}`);
+    console.log(auth);
     client = Stomp.over(socket);
     client.connect(headers, () => {
       client.subscribe("/topic/message", (message) => {

@@ -3,6 +3,7 @@ import { createContext, useState, ReactNode } from 'react'
 type AuthStateType = {
     auth : AuthState
     setAuth : (auth : AuthState) => void
+    getAuth : () => void
     setDestroyAuth : () => void
 }
 interface AuthProviderProps {
@@ -28,7 +29,8 @@ const AuthContext = createContext<AuthStateType>({
         isRefreshed : false
     },
     setAuth: (auth : AuthState) => undefined,
-    setDestroyAuth : () => undefined
+    setDestroyAuth : () => undefined,
+    getAuth : () => undefined
 });
 
 export const AuthProvider = ({ children } : AuthProviderProps) => {
@@ -42,7 +44,12 @@ export const AuthProvider = ({ children } : AuthProviderProps) => {
     }
     const [auth,setDataAuth] = useState<AuthState>(emptyAuth)
 
-    const setAuth = (auth : AuthState) => {
+    const setAuth = (authorization : AuthState) => {
+        setDataAuth(authorization);
+        localStorage.setItem("jwt",authorization.accessToken);
+        localStorage.setItem("username", authorization.username);
+    }
+    const getAuth = async () => {
         if(auth.accessToken === "") {
             const storedUsername= localStorage.getItem("username");
             const storedToken = localStorage.getItem("jwt");
@@ -54,10 +61,6 @@ export const AuthProvider = ({ children } : AuthProviderProps) => {
                 }
                 setDataAuth(updatedAuth);
             }
-        } else {
-            setDataAuth(auth);
-            localStorage.setItem("jwt",auth.accessToken);
-            localStorage.setItem("username", auth.username);
         }
     }
     const setDestroyAuth = () => {
@@ -68,7 +71,7 @@ export const AuthProvider = ({ children } : AuthProviderProps) => {
 
     }
     return (
-        <AuthContext.Provider value={{ auth, setAuth, setDestroyAuth }}>
+        <AuthContext.Provider value={{ auth, setAuth, getAuth, setDestroyAuth }}>
             { children }
         </AuthContext.Provider>
     )
