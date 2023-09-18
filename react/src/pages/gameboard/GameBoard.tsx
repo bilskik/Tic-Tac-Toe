@@ -3,13 +3,13 @@ import "./gameboard.css"
 import ScoreBoard from "./scoreboard/ScoreBoard"
 import Board from "./board/Board"
 import useGame from "../../hooks/useGame"
-
+import useAuth from "../../hooks/useAuth"
 const GameBoard = () => {
   const { gameData, getDataAfterRefresh } = useGame();
+  const { auth } = useAuth();
   useEffect(() => {
-    if(performance.getEntriesByType("navigation")[0]) {
       getDataAfterRefresh()
-    }
+      console.log("JEstem w gameBoard")
   },[])
 
   const boardTotalSize = useMemo<number>(() => {
@@ -17,10 +17,11 @@ const GameBoard = () => {
   },[gameData])
   console.log(boardTotalSize)
 
-
   return (
       <>
-          <ScoreBoard/>
+          <ScoreBoard
+            token={auth.accessToken}
+          />
           <Board
             boardTotalSize={boardTotalSize}
           />

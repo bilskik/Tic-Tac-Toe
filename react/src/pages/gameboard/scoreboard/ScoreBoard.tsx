@@ -1,46 +1,65 @@
 import Stomp from "stompjs"
 import SockJs from "sockjs-client"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import "./scoreboard.css"
 import useAuth from "../../../hooks/useAuth";
 import { send } from "process";
 
+type messageType = {
+  sender : string,
+  content : string
+}[]
+type messageGetType = {
+  sender : string,
+  content : string
+}
 
+type ScoreBoardProps = {
+  token : string
+}
+const ScoreBoard = ({ token } : ScoreBoardProps) => {
 
-const ScoreBoard = () => {
   let result1 = 2;
   let result2 = 3;
-  const { auth } = useAuth();
-  const [messages, setMessages] = useState<string[]>([]);
+  // const client  = useWebSockets();
+  const [messages, setMessages] = useState<messageType>([]);
   const [message,setMessage] = useState<string>('');
   const [nickname,setNickname] = useState<string>('');
-  console.log(auth.accessToken);
+  const [isConnected, setIsConnected] = useState<boolean>(false);
+  let socket = useRef<any>();
+  let client = useRef<any>();
   const headers = {
     'Content-Type' : 'application/json',
-    'Authorization' : `Bearer ${auth.accessToken}`
+    'Authorization' : `Bearer ${token}`
   }
-  const socket = new SockJs(`http://localhost:8080/ws?token=${auth.accessToken}`);
-
-  let client : Stomp.Client;
   useEffect(() => {
-    console.log(auth);
-    client = Stomp.over(socket);
-    client.connect(headers, () => {
-      client.subscribe("/topic/message", (message) => {
+    console.log("SIEMAAAA!!!")
+    socket.current = new SockJs(`http://localhost:8080/ws?token=${token}`);
+    client.current = Stomp.over(socket.current);
+    client.current.connect(headers, () => {
+      setIsConnected(true);
+      client.current.subscribe("/topic/message", (message : any ) => {
         const receivedMessage = JSON.parse(message.body);
         console.log(receivedMessage)
-        setMessages((prevMessage : string[]) => [...prevMessage, receivedMessage])
+        setMessages((prevMessage : messageType) => [...prevMessage, receivedMessage])
       })
     })
+
+    return () => {
+      if(client.current && client.current.connected) {
+        client.current.disconnect();
+        setIsConnected(false);
+      }
+    }
   },[])
 
   const sendMessage = () => {
-    if(message.trim()) {
-      const chatMessage = {
+    if(isConnected && message.trim()) {
+      const chatMessage : messageGetType = {
         sender : nickname, 
         content : message
       }
-      client.send('/app/chat', {}, JSON.stringify(chatMessage));
+      client.current.send('/app/chat', {}, JSON.stringify(chatMessage));
       setMessage('');
     }
   }
@@ -70,6 +89,9 @@ const ScoreBoard = () => {
         <p>Message</p>
         <textarea value={message} onChange={handleMessageChange}></textarea>
         <button onClick={sendMessage}>Send</button>
+        { messages.map((msg,index) => (
+          <li key={index}>{msg.sender} : {msg.content}</li>
+        ))}
       </div>
     </div>
   )

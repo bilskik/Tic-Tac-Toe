@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 const App = () => {
   const { getAuth } = useAuth();
   const [routes, setRoutes] = useState<any>(null);
-
   useEffect(() => {
     const fetchData = async () => {
       getAuth();
@@ -48,8 +47,8 @@ const App = () => {
       setRoutes(createdRoutes);
     }
     fetchData();
-  }, []);
 
+  }, []);
   return (
     <GoogleOAuthProvider clientId={clientInfo.clientId}>
       <MenuDisplayProvider>
