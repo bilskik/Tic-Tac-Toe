@@ -5,16 +5,15 @@ import Board from "./board/Board"
 import useGame from "../../hooks/useGame"
 import useAuth from "../../hooks/useAuth"
 const GameBoard = () => {
-  const { gameData, getDataAfterRefresh } = useGame();
-  useEffect(() => {
-      getDataAfterRefresh()
-      console.log("JEstem w gameBoard")
-  },[])
 
+  const { gameData, getDataAfterRefresh } = useGame();
   const boardTotalSize = useMemo<number>(() => {
     return gameData.boardSize * gameData.boardSize 
   },[gameData])
-  console.log(boardTotalSize)
+
+  useEffect(() => {
+      getDataAfterRefresh()
+  },[])
 
   return (
       <>
