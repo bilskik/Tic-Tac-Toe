@@ -4,40 +4,58 @@ import useAuth from './useAuth'
 type useFetchProps = {
     url : string,
     isJWT : boolean
+    data? : object
 }
 
-const useFetch = ({url, isJWT }  : useFetchProps) => {
+const useFetch = ({url, isJWT, data }  : useFetchProps) => {
     const { auth } = useAuth();
+    
     const fetchData = async () => {
-        let requestHeader;
-        console.log(auth.accessToken)
+        const requestHeader = jwtChecker();
+        try {
+        const response = await axios.get(url,
+            { 
+                headers : requestHeader
+            }
+        )
+        return response.data;
+        } catch(err : any) {
+            console.log("ERROR")
+        }
+
+    }
+
+    const postData = async () => {
+        const requestHeader = jwtChecker();
+        try {
+            const response = await axios.post(url,
+                data,
+                {
+                    headers : requestHeader
+                }
+            ).then(response => {
+                return response.data
+            })
+        } catch(err : any) {
+            console.log("error")
+        }
+        
+    }
+
+    const jwtChecker = () => {
         if(isJWT) {
-            requestHeader = {
+            return {
                 'Content-Type' : 'application/json',
                 'Authorization' : `Bearer ${auth.accessToken}`
             }
         }
         else {
-            requestHeader = {
+            return {
                 'Content-Type' : 'application/json'
             }
         }
-        console.log(auth.accessToken);
-        try {
-        const response = await axios.get(url,
-            { 
-                headers : {
-                    'Content-Type' : 'application/json',
-                    'Authorization' : `Bearer ${auth.accessToken}`
-                }
-            }
-        )
-        return response.data;
-        } catch(err : any) {
-            //create error 
-        }
     }
-    return fetchData;
+    return { fetchData, postData } ;
 }
 
 export default useFetch

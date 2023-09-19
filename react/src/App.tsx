@@ -6,8 +6,10 @@ import "./app.css"
 import { MenuDisplayProvider } from "./context/MenuDisplayProvider";
 import useAuth from "./hooks/useAuth";
 import { useEffect, useState } from "react";
+import useGame from "./hooks/useGame";
 const App = () => {
   const { getAuth } = useAuth();
+  const { gameData } = useGame();
   const [routes, setRoutes] = useState<any>(null);
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +40,7 @@ const App = () => {
           )
         },
         {
-          path : "/game",
+          path : `/friendgame/${gameData.gameCode}`,
           element: (
               <GameBoard/>
           )

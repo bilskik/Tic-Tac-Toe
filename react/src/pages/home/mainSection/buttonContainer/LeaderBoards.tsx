@@ -10,9 +10,9 @@ import { LeaderboardRanks, PlayerRanks } from './shared.types';
 const LeaderBoards = () => {
     const [boardType,setBoardType] = useState("leaderboard");
     const [playerData, setPlayerData] = useState<LeaderboardRanks[] | PlayerRanks[]>();
-    const  fetchData  = useFetch({ 
+    const  { fetchData }  = useFetch({ 
         url : "/users",
-        isJWT :  false
+        isJWT :  true
     })
     useEffect(() => {
         const fetchDataAndProcess = async () => {

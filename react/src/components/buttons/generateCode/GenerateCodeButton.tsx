@@ -7,7 +7,7 @@ type GenerateCodeButtonProps = {
   handleSetCode : (code : string) => void
 }
 const GenerateCodeButton = ({ handleSetCode }: GenerateCodeButtonProps) => {
-  const fetchData = useFetch({
+  const { fetchData } = useFetch({
     url : "/game",
     isJWT : true
   })
