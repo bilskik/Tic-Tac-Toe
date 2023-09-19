@@ -15,19 +15,19 @@ public class WebSocketEventListener {
 
     private final SimpMessageSendingOperations messageTemplate;
 
-    @EventListener
-    public void handleWebSocketDisconnectListener(
-            SessionDisconnectEvent event
-    ) {
-        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-        String username = (String) headerAccessor.getSessionAttributes().get("username");
-        if(username != null) {
-            log.info("User disconnected!");
-            var gameMessage = GameMessage.builder()
-                    .messageType(MessageType.LEAVE)
-                    .sender(username)
-                    .build();
-            messageTemplate.convertAndSend("/topic/public", gameMessage);
-        }
-    }
+//    @EventListener
+//    public void handleWebSocketDisconnectListener(
+//            SessionDisconnectEvent event
+//    ) {
+//        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
+//        String username = (String) headerAccessor.getSessionAttributes().get("username");
+//        if(username != null) {
+//            log.info("User disconnected!");
+//            var gameMessage = GameMessage.builder()
+//                    .messageType(MessageType.LEAVE)
+//                    .sender(username)
+//                    .build();
+//            messageTemplate.convertAndSend("/topic/public", gameMessage);
+//        }
+//    }
 }

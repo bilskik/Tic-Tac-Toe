@@ -8,8 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GameMessage {
-    private String content;
-    private String receiver;
-    private String sender;
-    private MessageType messageType;
+    public String sender;
+    public String mark;
+    public int x;
+    public int y;
 }

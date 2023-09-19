@@ -22,15 +22,15 @@ public class User implements UserDetails {
     public String password;
     @Embedded
     public Statistics statistics;
-//    @OneToOne(
-//            fetch = FetchType.EAGER,
-//            cascade = CascadeType.ALL
-//    )
-//    @JoinColumn(
-//            name = "gameId",
-//            referencedColumnName = "gameId"
-//    )
-//    public Game game;
+    @OneToOne(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "gameId",
+            referencedColumnName = "gameId"
+    )
+    public Game game;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
