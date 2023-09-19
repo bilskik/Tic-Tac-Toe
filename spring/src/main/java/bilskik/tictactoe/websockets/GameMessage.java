@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class GameMessage {
     private String content;
+    private String receiver;
     private String sender;
     private MessageType messageType;
 }
