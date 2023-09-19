@@ -6,7 +6,6 @@ import useGame from "../../hooks/useGame"
 import useAuth from "../../hooks/useAuth"
 const GameBoard = () => {
   const { gameData, getDataAfterRefresh } = useGame();
-  const { auth } = useAuth();
   useEffect(() => {
       getDataAfterRefresh()
       console.log("JEstem w gameBoard")
@@ -19,9 +18,7 @@ const GameBoard = () => {
 
   return (
       <>
-          <ScoreBoard
-            token={auth.accessToken}
-          />
+          <ScoreBoard/>
           <Board
             boardTotalSize={boardTotalSize}
           />
