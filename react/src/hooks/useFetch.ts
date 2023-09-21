@@ -10,7 +10,10 @@ type useFetchProps = {
 const useFetch = ({url, isJWT, data }  : useFetchProps) => {
     const { auth } = useAuth();
     
-    const fetchData = async () => {
+    const fetchData = async (optionalUrl? : string) => {
+        if(optionalUrl !== undefined) {
+            url = optionalUrl;
+        }
         const requestHeader = jwtChecker();
         try {
         const response = await axios.get(url,
@@ -34,9 +37,8 @@ const useFetch = ({url, isJWT, data }  : useFetchProps) => {
                 {
                     headers : requestHeader
                 }
-            ).then(response => {
-                return response.data
-            })
+            )
+            return response.data
         } catch(err : any) {
             console.log("error")
         }

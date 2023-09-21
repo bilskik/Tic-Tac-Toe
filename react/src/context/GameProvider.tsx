@@ -1,5 +1,4 @@
 import { createContext, useState, ReactNode } from "react";
-import { isObjectLiteralElementLike } from "typescript";
 
 type GameProviderProps = {
     children : ReactNode
@@ -13,15 +12,17 @@ type GameContextType = {
 }
 type GameDataType = {
     gameCode : string,
-    boardSize : number
-    markNumber : number
+    boardSize : number,
+    markNumber : number,
+    mark : string
 }
 
 const GameContext = createContext<GameContextType>({
     gameData : {
         gameCode : "",
         boardSize : 5,
-        markNumber : 3
+        markNumber : 3,
+        mark : ""
     },
     setGameData : () => undefined,
     getDataAfterRefresh : () => undefined,
@@ -33,7 +34,8 @@ export const GameProvider = ({ children } : GameProviderProps) => {
     const defaultGameData : GameDataType = {
         gameCode : "",
         boardSize : 5,
-        markNumber : 3
+        markNumber : 3,
+        mark : ""
     }
     const checkProperDefaultValue : () => GameDataType = () =>  {
         const storedGameData = localStorage.getItem(objectName);

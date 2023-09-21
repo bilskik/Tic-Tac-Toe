@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
+import useGame from "../../../hooks/useGame";
 
 type NavbarProps = {
   nickName : string
@@ -16,7 +17,7 @@ const Navbar = ({ nickName } : NavbarProps) => {
   const [isOpen,setIsOpen] = useState<boolean>(false);
   const [isLoginBtn, setIsLoginBtn] = useState<boolean>(true);
   const { auth, setDestroyAuth }   = useAuth();
- 
+  const { removeData } = useGame();
   useEffect(() => {
     if(auth.username && auth.accessToken) {
       setIsLoginBtn(false);
@@ -28,6 +29,7 @@ const Navbar = ({ nickName } : NavbarProps) => {
   const handleLogout = () => {
     setDestroyAuth()
     setIsLoginBtn(true);
+    removeData();
   }
 
   return (
