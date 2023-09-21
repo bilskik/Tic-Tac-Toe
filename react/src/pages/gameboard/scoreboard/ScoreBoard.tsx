@@ -7,22 +7,9 @@ import { useWebSocketsType } from "../shared.types";
 
 const ScoreBoard = () => {
   const { auth } = useAuth(); 
-  const webSocketURLConfiguration = {
-    webSocketURL : "ws",
-    subscriptionPublicChannelURL : "/topic/message",
-    subscriptionPrivateChannelURL : `/user/${auth.username}/private`,
-    sendURL : "/app/chat"
-  }
+
   const [message,setMessage] = useState<string>('');
   const [nickname,setNickname] = useState<string>('');
-  const { messages, sendPrivateMessage } = useWebSockets(webSocketURLConfiguration);
-  console.log(messages);
-  const handleMessageChange = (e : any) => {
-    setMessage(e.target.value)
-  }
-  const handleNicknameChange = (e : any) => {
-    setNickname(e.target.value)
-  }
 
   return (
     <div className="scoreboard">
@@ -37,14 +24,6 @@ const ScoreBoard = () => {
           </p>
           <PlayerData/>
         </div>
-        <p>Nickname</p>
-        <textarea value={nickname} onChange={handleNicknameChange}></textarea>
-        <p>Message</p>
-        <textarea value={message} onChange={handleMessageChange}></textarea>
-        <button onClick={(e) => sendPrivateMessage(message,nickname)}>Send</button>
-        { messages.map((msg,index) => (
-          <li key={index}>{msg.sender} : {msg.content}</li>
-        ))}
       </div>
     </div>
   )

@@ -10,51 +10,52 @@ import useGame from "./hooks/useGame";
 const App = () => {
   const { getAuth } = useAuth();
   const { gameData } = useGame();
-  const [routes, setRoutes] = useState<any>(null);
+
   useEffect(() => {
     const fetchData = async () => {
       getAuth();
-      const createdRoutes= createBrowserRouter([
-        {
-          path: "",
-          element : (
-              <Home/>
-          )
-        },
-        {
-          path: "/settings",
-          element: (
-              <Settings/>
-          )
-        },
-        {
-          path: "/statistics",
-          element: (
-              <Statistics/>
-          )
-        }, 
-        {
-          path: "/login",
-          element : (
-              <Login/>
-          )
-        },
-        {
-          path : `/friendgame/${gameData.gameCode}`,
-          element: (
-              <GameBoard/>
-          )
-        }
-      ]);
-      setRoutes(createdRoutes);
+      
     }
     fetchData();
 
   }, []);
+  
+  const routes= createBrowserRouter([
+    {
+      path: "",
+      element : (
+          <Home/>
+      )
+    },
+    {
+      path: "/settings",
+      element: (
+          <Settings/>
+      )
+    },
+    {
+      path: "/statistics",
+      element: (
+          <Statistics/>
+      )
+    }, 
+    {
+      path: "/login",
+      element : (
+          <Login/>
+      )
+    },
+    {
+      path : `/friendgame/${gameData.gameCode}`,
+      element: (
+          <GameBoard/>
+      )
+    }
+  ]);
   return (
     <GoogleOAuthProvider clientId={clientInfo.clientId}>
       <MenuDisplayProvider>
-        {routes ? <RouterProvider router={routes} /> : null}
+        <RouterProvider router={routes} />
       </MenuDisplayProvider>
     </GoogleOAuthProvider>
   )

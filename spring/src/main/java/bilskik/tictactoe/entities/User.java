@@ -17,14 +17,12 @@ import java.util.Collection;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long userId;
+    public long userId;
     public String username;
     public String password;
     @Embedded
     public Statistics statistics;
     @OneToOne(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
     )
     @JoinColumn(
             name = "gameId",

@@ -9,7 +9,7 @@ const GameBoard = () => {
   const { gameData, getDataAfterRefresh } = useGame();
   const { auth } = useAuth();
   const { postData } = useFetch({
-    url : `/friendgame/${auth.username}`,
+    url : `/friendgame/${gameData.gameCode}`,
     isJWT : true,
     data : {
       ...gameData,
@@ -31,6 +31,7 @@ const GameBoard = () => {
           <ScoreBoard/>
           <Board
             boardTotalSize={boardTotalSize}
+            loggedUsername={auth.username}
           />
       </>
     )

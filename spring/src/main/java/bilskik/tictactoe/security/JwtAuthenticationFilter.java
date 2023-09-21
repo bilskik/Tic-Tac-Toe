@@ -65,6 +65,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 );
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
+            System.out.println("SIEMA WSZYSTKO OK Z JWT");
             filterChain.doFilter(request,response);
         }
     }

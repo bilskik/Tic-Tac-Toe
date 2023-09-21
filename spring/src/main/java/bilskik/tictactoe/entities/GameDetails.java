@@ -12,8 +12,12 @@ import lombok.*;
 public class GameDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long gameDetailsId;
-    public char mark;
-    public int x;
-    public int y;
+    public long gameDetailsId;
+    public String mark;
+    public int gameIndex;
+    @ManyToOne
+    @JoinColumn(
+            name = "gameId"
+    )
+    public Game game;
 }

@@ -29,7 +29,10 @@ const GameMenuModal = () => {
         ...gameData,
         gameCode : code
       });
-      saveData();
+      saveData({
+        ...gameData,
+        gameCode : code
+      });
       setGameURL(`http://localhost:3000/friendgame/${code}`)
   }
 
@@ -74,7 +77,7 @@ const GameMenuModal = () => {
           <LinkCopy
             gameURL={gameURL}
           />
-          <Link to={`/friendgame/${gameData.gameCode}`}>
+          <Link to={`/friendgame/${code}`}>
             <button>Play</button>
           </Link>
         </div>

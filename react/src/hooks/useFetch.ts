@@ -27,6 +27,7 @@ const useFetch = ({url, isJWT, data }  : useFetchProps) => {
 
     const postData = async () => {
         const requestHeader = jwtChecker();
+        console.log(requestHeader);
         try {
             const response = await axios.post(url,
                 data,

@@ -1,7 +1,6 @@
 package bilskik.tictactoe.service;
 
 import bilskik.tictactoe.entities.Game;
-import bilskik.tictactoe.entities.GameDetails;
 import bilskik.tictactoe.repositories.GameDetailsRepository;
 import bilskik.tictactoe.repositories.GameRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +19,12 @@ public class GameService {
                 && game.marksToWin >= 3 && game.marksToWin <= 5 && gameCode != null && !gameCode.equals("")) {
             int initBoardSize = game.boardSize * game.boardSize;
             game.gameDetails = new ArrayList<>(initBoardSize);
-            game.gameCode = gameCode;
+            game.setGameCode(gameCode);
+            game.setMarksToWin(game.getMarksToWin());
+            game.setBoardSize(initBoardSize);
             gameRepository.save(game);
-        } else {
+        }
+        else {
             throw new IllegalArgumentException("Game equals null");
         }
     }

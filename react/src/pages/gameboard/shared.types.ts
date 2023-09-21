@@ -8,3 +8,8 @@ export type useWebSocketsType = {
     subscriptionPrivateChannelURL : string,
     sendURL : string
 }
+export type WebSocketGameMessage = {
+    sender : string,
+    mark : string,
+    index : number
+}

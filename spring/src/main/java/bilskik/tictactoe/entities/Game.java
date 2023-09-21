@@ -15,16 +15,12 @@ import java.util.List;
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long gameId;
+    public long gameId;
     public String gameCode;
     public int marksToWin;
     public int boardSize;
     @OneToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(
-            referencedColumnName = "gameId"
+            mappedBy = "game"
     )
     public List<GameDetails> gameDetails;
 

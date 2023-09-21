@@ -8,7 +8,7 @@ type GameContextType = {
     gameData : GameDataType
     setGameData : React.Dispatch<React.SetStateAction<GameDataType>>
     getDataAfterRefresh : () => void
-    saveData : () => void
+    saveData : (dataToUpdate : GameDataType) => void
     removeData : () => void
 }
 type GameDataType = {
@@ -46,8 +46,8 @@ export const GameProvider = ({ children } : GameProviderProps) => {
     const dataToSet = checkProperDefaultValue();
     const [gameData, setGameData] = useState<GameDataType>(dataToSet);
     
-    const saveData = () => {
-        localStorage.setItem(objectName,JSON.stringify(gameData));
+    const saveData = (dataToUpdate : GameDataType) => {
+        localStorage.setItem(objectName,JSON.stringify(dataToUpdate));
     }
     const getDataAfterRefresh = () => {
         const storedGameData = localStorage.getItem(objectName);
