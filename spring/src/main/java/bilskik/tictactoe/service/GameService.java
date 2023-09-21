@@ -1,7 +1,12 @@
 package bilskik.tictactoe.service;
 
+import bilskik.tictactoe.DTO.GameDTO;
+import bilskik.tictactoe.DTO.StatisticsDTO;
 import bilskik.tictactoe.entities.Game;
 import bilskik.tictactoe.entities.User;
+import bilskik.tictactoe.entities.embedded.Statistics;
+import bilskik.tictactoe.mapper.Mapper;
+import bilskik.tictactoe.mapper.MapperImpl;
 import bilskik.tictactoe.repositories.GameDetailsRepository;
 import bilskik.tictactoe.repositories.GameRepository;
 import bilskik.tictactoe.repositories.UserRepository;
@@ -18,9 +23,11 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class GameService {
 
-    public final GameRepository gameRepository;
-    public final UserRepository userRepository;
-    public final GameDetailsRepository gameDetailsRepository;
+    private final GameRepository gameRepository;
+    private final UserRepository userRepository;
+    private final GameDetailsRepository gameDetailsRepository;
+    public final MapperImpl<Game, GameDTO> gameDTOMapper;
+
     private final int SEED = 100012312;
     private final int BOUND = 2;
     public String registerFriendGame(String gameCode, Game game) {
@@ -28,11 +35,12 @@ public class GameService {
         if(gameOptional.isEmpty()) {
             String hostMark = initializeGameEntity(gameCode,game);
             return hostMark;
-        } else {
+        } else if(gameOptional.get().getGuest() == null) {
             String guestMark = initializeGuestEntity(gameCode,game,gameOptional.get());
             return guestMark;
+        } else {
+            return "";
         }
-
     }
     private String initializeGameEntity(String gameCode, Game game) {
         if(game.getGameCode() != null && !game.getGameCode().equals("") && game.getBoardSize() >= 3
@@ -56,18 +64,22 @@ public class GameService {
         }
     }
     private String initializeGuestEntity(String gameCode, Game game, Game gameFromDB ) {
-        gameFromDB.setGuest(game.getHost());
-        String mark = chooseMark(gameFromDB);
-        gameFromDB.setGuestMark(mark);
-        gameRepository.save(gameFromDB);
-        Optional<User> userOptional = userRepository.findUserByUsername(gameFromDB.getGuest());
-        if(userOptional.isPresent()) {
-            userOptional.get().setGame(gameFromDB);
-            userRepository.save(userOptional.get());
+        if(!gameFromDB.getHost().equals(game.getHost())) {
+            gameFromDB.setGuest(game.getHost());
+            String mark = chooseMark(gameFromDB);
+            gameFromDB.setGuestMark(mark);
+            gameRepository.save(gameFromDB);
+            Optional<User> userOptional = userRepository.findUserByUsername(gameFromDB.getGuest());
+            if (userOptional.isPresent()) {
+                userOptional.get().setGame(gameFromDB);
+                userRepository.save(userOptional.get());
+            } else {
+                throw new IllegalArgumentException("Guest is not present!");
+            }
+            return mark;
         } else {
-            throw new IllegalArgumentException("Guest is not present!");
+            throw new IllegalArgumentException("We ve got an refresh");
         }
-        return mark;
     }
     private String chooseMark() {
         Random r = new Random(SEED);
@@ -86,4 +98,12 @@ public class GameService {
         }
     }
 
+    public GameDTO registerFriendGameGuest(String gameCode) {
+        Optional<Game> gameOptional = gameRepository.findByGameCode(gameCode);
+        if(gameOptional.isPresent()) {
+            return gameDTOMapper.toDTO(gameOptional.get());
+        } else {
+            throw new IllegalArgumentException("No game exception!");
+        }
+    }
 }

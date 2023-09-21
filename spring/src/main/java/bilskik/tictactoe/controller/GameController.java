@@ -1,5 +1,6 @@
 package bilskik.tictactoe.controller;
 
+import bilskik.tictactoe.DTO.GameDTO;
 import bilskik.tictactoe.entities.Game;
 import bilskik.tictactoe.service.GameService;
 import bilskik.tictactoe.websockets.GameMessage;
@@ -52,5 +53,11 @@ public class GameController {
             @RequestBody Game game
     ) {
         return ResponseEntity.ok(gameService.registerFriendGame(gameCode,game));
+    }
+    @GetMapping("/friendgame/guest/{gameCode}")
+    public ResponseEntity<GameDTO> registerFriendGameGuest(
+            @PathVariable String gameCode
+    ) {
+        return ResponseEntity.ok(gameService.registerFriendGameGuest(gameCode));
     }
 }

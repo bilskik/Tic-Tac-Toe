@@ -1,7 +1,9 @@
 package bilskik.tictactoe.mapper;
 
+import bilskik.tictactoe.DTO.GameDTO;
 import bilskik.tictactoe.DTO.StatisticsDTO;
 import bilskik.tictactoe.DTO.UserDTO;
+import bilskik.tictactoe.entities.Game;
 import bilskik.tictactoe.entities.User;
 import bilskik.tictactoe.entities.embedded.Statistics;
 import org.modelmapper.ModelMapper;
@@ -21,5 +23,9 @@ public class MapperConfig {
     @Bean
     public MapperImpl<Statistics, StatisticsDTO> statisticsMapper() {
         return new MapperImpl<>(Statistics.class, StatisticsDTO.class);
+    }
+    @Bean
+    public MapperImpl<Game, GameDTO> gameMapper() {
+        return new MapperImpl<>(Game.class, GameDTO.class);
     }
 }
