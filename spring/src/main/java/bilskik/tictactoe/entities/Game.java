@@ -3,7 +3,6 @@ package bilskik.tictactoe.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,10 +14,16 @@ import java.util.List;
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long gameId;
-    public String gameCode;
-    public int marksToWin;
-    public int boardSize;
+    private long gameId;
+    private String gameCode;
+    private int marksToWin;
+    private int boardSize;
+    private String host;
+    private String hostMark;
+    private String guest;
+    private String guestMark;
+//    @Embedded
+//    private GameHostGuestDetails gameHostGuestDetails;
     @OneToMany(
             mappedBy = "game"
     )

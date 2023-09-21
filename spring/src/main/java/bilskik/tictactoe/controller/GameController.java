@@ -5,6 +5,7 @@ import bilskik.tictactoe.service.GameService;
 import bilskik.tictactoe.websockets.GameMessage;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -46,10 +47,10 @@ public class GameController {
         return gameMessage;
     }
     @PostMapping("/friendgame/{gameCode}")
-    public void registerFriendGame(
+    public ResponseEntity<String> registerFriendGame(
             @PathVariable String gameCode,
             @RequestBody Game game
     ) {
-        gameService.registerFriendGame(gameCode,game);
+        return ResponseEntity.ok(gameService.registerFriendGame(gameCode,game));
     }
 }

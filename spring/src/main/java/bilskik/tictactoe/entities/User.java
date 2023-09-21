@@ -22,7 +22,7 @@ public class User implements UserDetails {
     public String password;
     @Embedded
     public Statistics statistics;
-    @OneToOne(
+    @ManyToOne(
     )
     @JoinColumn(
             name = "gameId",
